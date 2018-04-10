@@ -60,9 +60,6 @@ public class MainWindow {
               try {
                 callResponse = wikiAPI.getTerm(textField1.getText()).execute();
 
-                System.out.println("XML " + callResponse.body());
-
-
                 if (callResponse.body() == null) {
                   text = "No Results";
                 } else {
@@ -109,11 +106,6 @@ public class MainWindow {
     frame.setVisible(true);
 
     DataBase.createNewDatabase();
-    DataBase.saveTerm("test", "sarasa");
-
-
-    System.out.println(DataBase.getMeaning("test"));
-    System.out.println(DataBase.getMeaning("nada"));
   }
 
   public static String textToHtml(String text, String term) {
