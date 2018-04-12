@@ -26,4 +26,7 @@ class ServiceYandex implements Parser{
       //Catch algo tiene que ser
       return retorno;
   }
+	@Override public boolean hayResultados(String respuesta){
+    return respuesta!=null;
+  }
 }
