@@ -1,5 +1,13 @@
 package ayds.dictionary.foxtrot.services;
-class ServiceYandex implements Parser{
+
+import retrofit2.Retrofit;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
+import retrofit2.Response;
+
+import java.io.IOException;
+
+
+class ServiceYandex implements Service{
   private static ServiceYandex instance;
   private YandexAPI wikiAPI;
 
@@ -11,18 +19,21 @@ class ServiceYandex implements Parser{
 
     wikiAPI = retrofit.create(YandexAPI.class);
   }
-  @Override public static Service getInstance(){
+  public static ServiceYandex getInstance(){
     if(instance == null) {
       instance =  new ServiceYandex();
     }
     return instance;
   }
   @Override public String obtenerTermino(String request){
-      String retorno;
+      String retorno=null;
       Response<String> callResponse;
-      //try {
-        callResponse = wikiAPI.getTerm(textField1.getText()).execute();
+      try {
+        callResponse = wikiAPI.getTerm(request).execute();
         retorno=callResponse.body();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
       //Catch algo tiene que ser
       return retorno;
   }

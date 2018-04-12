@@ -4,7 +4,7 @@ public class TraductorModelModule {
   private static TraductorModelModule instance;
   private TraductorModel traductorModel;
 
-  private UserModelModule() {
+  private TraductorModelModule() {
     traductorModel =  new TraductorModelImpl();
   }
 

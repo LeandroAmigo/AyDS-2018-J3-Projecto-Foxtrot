@@ -9,10 +9,7 @@ class TraductorModelImpl implements TraductorModel{
     DataBase.createNewDatabase();
   }
 
-  @Override public void updateUser(String name, String lastName) {
-    updateUserNow( name,  lastName);
-    notifyListener();
-  }
+
 
 /*
   private void notifyListener() {

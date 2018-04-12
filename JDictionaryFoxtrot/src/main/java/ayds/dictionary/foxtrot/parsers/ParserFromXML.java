@@ -9,13 +9,15 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
+import java.io.IOException;
+
 class ParserFromXML implements InputParser{
   
   private static ParserFromXML instance;
  
   private ParserFromXML() {}
 
-  @Override public static InputParser getInstance() {
+  public static ParserFromXML getInstance() {
     if(instance == null) {
       instance =  new ParserFromXML();
     }
@@ -30,13 +32,22 @@ class ParserFromXML implements InputParser{
   }
   private Document getDocument(String texto){
     DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-    DocumentBuilder db = dbf.newDocumentBuilder();
-    return db.parse(new InputSource(new java.io.StringReader(body)));
+    DocumentBuilder db = null;
+    Document doc=null;
+    try {
+      db = dbf.newDocumentBuilder();
+      doc=db.parse(new InputSource(new java.io.StringReader(texto)));
+    } catch (ParserConfigurationException e) {e.printStackTrace();} catch (SAXException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return doc;
   }
-  private NodeList getNodo(documento){
+  private NodeList getNodo(Document documento){
     return documento.getDocumentElement().getElementsByTagName("text");
   }
-  private String getContenido(nodoTexto){
+  private String getContenido(NodeList nodoTexto){
     return nodoTexto.item(0).getTextContent();
   }
 

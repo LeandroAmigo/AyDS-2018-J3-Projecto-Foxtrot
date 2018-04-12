@@ -1,4 +1,7 @@
 package ayds.dictionary.foxtrot.view;
+import ayds.dictionary.foxtrot.controller.TraductorController;
+import ayds.dictionary.foxtrot.model.TraductorModel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -47,5 +50,7 @@ public class TraductorViewImpl implements TraductorView {
   @Override public void updateTraduccion(String traduccion) {
     PaneldeTraduccion.setText(traduccion);
   }
-
+  protected JPanel getContentPane(){
+    return contentPane;
+  }
 }

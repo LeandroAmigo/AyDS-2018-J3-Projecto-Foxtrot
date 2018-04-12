@@ -1,4 +1,4 @@
-package ayds.dictionary.foxtrot.fulllogic;
+package ayds.dictionary.foxtrot.services;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
