@@ -75,7 +75,7 @@ public class MainWindow {
 
                   // save to DB  <o/
 
-                  DataBase_Old.saveTerm(textField1.getText(), text);
+
                 }
 
               } catch (IOException e1) {

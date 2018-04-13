@@ -1,5 +1,6 @@
 package ayds.dictionary.foxtrot.model.services;
 
+import ayds.dictionary.foxtrot.excepciones.TraductorException;
 import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 import retrofit2.Response;
@@ -25,14 +26,14 @@ public class ServiceYandex implements Service{
     }
     return instance;
   }
-  @Override public String obtenerTermino(String request){
+  @Override public String obtenerTermino(String request) throws TraductorException {
       String retorno=null;
       Response<String> callResponse;
       try {
         callResponse = wikiAPI.getTerm(request).execute();
         retorno=callResponse.body();
       } catch (IOException e) {
-        e.printStackTrace();
+        throw new TraductorException("Se produjo un error en la conexion con el servicio del traductor");
       }
 
       return retorno;

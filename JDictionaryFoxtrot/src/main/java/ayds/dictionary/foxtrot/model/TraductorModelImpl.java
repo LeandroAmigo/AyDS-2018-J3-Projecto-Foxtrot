@@ -1,5 +1,6 @@
 package ayds.dictionary.foxtrot.model;
 
+import ayds.dictionary.foxtrot.excepciones.TraductorException;
 import ayds.dictionary.foxtrot.model.services.Service;
 
 public class TraductorModelImpl implements TraductorModel{
@@ -22,7 +23,7 @@ public class TraductorModelImpl implements TraductorModel{
   }
 
   @Override
-  public String solicitarResultado(String request) {
+  public String solicitarResultado(String request) throws TraductorException {
     return service.obtenerTermino(request);
   }
 

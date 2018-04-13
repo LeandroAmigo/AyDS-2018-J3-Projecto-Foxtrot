@@ -4,6 +4,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import ayds.dictionary.foxtrot.excepciones.TraductorException;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -24,23 +25,23 @@ public class ParserFromXML implements InputParser{
     return instance;
   }
 
-	@Override public String format(String texto) {
+	@Override public String format(String texto) throws TraductorException {
 	  Document documento= getDocument(texto);
 	  NodeList nodoTexto = getNodo(documento);
     String contenido=getContenido(nodoTexto);
 	  return contenido;
   }
-  private Document getDocument(String texto){
+  private Document getDocument(String texto) throws TraductorException {
     DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
     DocumentBuilder db = null;
     Document doc=null;
     try {
       db = dbf.newDocumentBuilder();
       doc=db.parse(new InputSource(new java.io.StringReader(texto)));
-    } catch (ParserConfigurationException e) {e.printStackTrace();} catch (SAXException e) {
-      e.printStackTrace();
+    } catch (SAXException | ParserConfigurationException e) {
+      throw new TraductorException("Se produjo un error parseando la respuesta");
     } catch (IOException e) {
-      e.printStackTrace();
+      throw new TraductorException("Se produjo un Error de Entrada/Salida");
     }
     return doc;
   }
