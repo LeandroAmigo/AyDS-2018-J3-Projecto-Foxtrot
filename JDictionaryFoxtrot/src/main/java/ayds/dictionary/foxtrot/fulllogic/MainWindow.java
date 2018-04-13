@@ -1,8 +1,5 @@
 package ayds.dictionary.foxtrot.fulllogic;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -51,7 +48,7 @@ public class MainWindow {
         new Thread(new Runnable() {
           @Override public void run() {
 
-            String text = DataBase.getMeaning(textField1.getText());
+            String text = DataBase_Old.getMeaning(textField1.getText());
 
 
             if (text != null) { // exists in db
@@ -78,7 +75,7 @@ public class MainWindow {
 
                   // save to DB  <o/
 
-                  DataBase.saveTerm(textField1.getText(), text);
+                  DataBase_Old.saveTerm(textField1.getText(), text);
                 }
 
               } catch (IOException e1) {
@@ -107,7 +104,7 @@ public class MainWindow {
     frame.pack();
     frame.setVisible(true);
 
-    DataBase.createNewDatabase();
+    DataBase_Old.createNewDatabase();
   }
 
   public static String textToHtml(String text, String term) {

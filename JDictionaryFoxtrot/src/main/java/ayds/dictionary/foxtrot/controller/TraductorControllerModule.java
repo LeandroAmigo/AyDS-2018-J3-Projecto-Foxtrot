@@ -1,6 +1,10 @@
 package ayds.dictionary.foxtrot.controller;
 
 import ayds.dictionary.foxtrot.model.TraductorModelModule;
+import ayds.dictionary.foxtrot.controller.parsers.ParserFromXML;
+import ayds.dictionary.foxtrot.controller.parsers.ParserToHTML;
+import ayds.dictionary.foxtrot.controller.parsers.Parsers;
+import ayds.dictionary.foxtrot.controller.parsers.ParsersImpl;
 import ayds.dictionary.foxtrot.view.TraductorView;
 import ayds.dictionary.foxtrot.view.TraductorViewModule;
 
@@ -26,7 +30,8 @@ public class TraductorControllerModule {
   }
 
   private TraductorController getTraductorController() {
-    return new TraductorControllerImpl(TraductorModelModule.getInstance().getTraductorModel());
+    Parsers parsers=new ParsersImpl(ParserFromXML.getInstance(), ParserToHTML.getInstance());
+    return new TraductorControllerImpl(TraductorModelModule.getInstance().getTraductorModel(),parsers);
   }
 
   private TraductorView openTraductorWindowAndGetView(TraductorController traductorController) {

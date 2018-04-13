@@ -33,18 +33,11 @@ public class TraductorViewImpl implements TraductorView {
       @Override public void actionPerformed(ActionEvent e) {
         //new Thread(new Runnable() {
         //  @Override public void run() {
-              traductorController.onEventUpdate(textField1.getText());
+              traductorController.onEventGo(textField1.getText());
         //  }
         //}).start();
      }
     });
-/*
-    traductorModel.setListener(new TraductorModelListener() {
-      @Override public void didUpdateRequest() {
-        updateRequest();
-      }
-    });
-*/
   }
 
   @Override public void updateTraduccion(String traduccion) {

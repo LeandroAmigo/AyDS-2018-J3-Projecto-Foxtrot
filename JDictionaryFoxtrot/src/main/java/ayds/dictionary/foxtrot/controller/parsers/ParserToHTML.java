@@ -1,10 +1,10 @@
-package ayds.dictionary.foxtrot.parsers;
+package ayds.dictionary.foxtrot.controller.parsers;
 
 
-class ParserToHTML implements OutputParser{
+public class ParserToHTML implements OutputParser{
   
   private static ParserToHTML instance;
-  private String texto,termino;
+  private String texto;
   private static final String fuente= "arial";
 
   private ParserToHTML() {
@@ -19,7 +19,6 @@ class ParserToHTML implements OutputParser{
 
 	@Override public String format(String texto) {
 	  this.texto=texto;
-	  this.termino=termino;
 	      
 	  formatNow();
 

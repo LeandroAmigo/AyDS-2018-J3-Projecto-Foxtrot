@@ -1,4 +1,4 @@
-package ayds.dictionary.foxtrot.services;
+package ayds.dictionary.foxtrot.model.services;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
@@ -7,7 +7,7 @@ import retrofit2.Response;
 import java.io.IOException;
 
 
-class ServiceYandex implements Service{
+public class ServiceYandex implements Service{
   private static ServiceYandex instance;
   private YandexAPI wikiAPI;
 
@@ -34,7 +34,7 @@ class ServiceYandex implements Service{
       } catch (IOException e) {
         e.printStackTrace();
       }
-      //Catch algo tiene que ser
+
       return retorno;
   }
 	@Override public boolean hayResultados(String respuesta){

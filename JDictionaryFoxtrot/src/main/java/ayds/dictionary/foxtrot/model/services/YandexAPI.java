@@ -1,4 +1,4 @@
-package ayds.dictionary.foxtrot.services;
+package ayds.dictionary.foxtrot.model.services;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

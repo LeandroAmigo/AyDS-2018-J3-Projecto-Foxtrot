@@ -1,28 +1,39 @@
 package ayds.dictionary.foxtrot.model;
 
+import ayds.dictionary.foxtrot.model.services.Service;
 
-class TraductorModelImpl implements TraductorModel{
+public class TraductorModelImpl implements TraductorModel{
 
-  //private UserModelListener listener;
-
-  TraductorModelImpl() {
+  private Service service;
+  public TraductorModelImpl(Service service) {
     DataBase.createNewDatabase();
+    this.service=service;
   }
 
+  @Override
+  public boolean estaResultadoCacheado(String request) {
+    String text = DataBase.getMeaning(request);
+    return text!=null;
+ }
 
+  @Override
+  public String getResultadoCacheado(String request) {
+    return "[*]" + DataBase.getMeaning(request);
+  }
 
-/*
-  private void notifyListener() {
-    if (listener != null) {
-      listener.didUpdateRequest();
+  @Override
+  public String solicitarResultado(String request) {
+    return service.obtenerTermino(request);
+  }
+
+  @Override
+  public boolean esResultadoValido(String response) {
+    return service.hayResultados(response);
+  }
+
+    @Override
+    public void guardarResultado(String request, String response) {
+        DataBase.saveTerm(request, response);
     }
-  }
-  @Override public void setListener(UserModelListener listener) {
-    this.listener = listener;
-  }
 
-  @Override public User getUser() {
-    return user;
-  }
-*/
 }

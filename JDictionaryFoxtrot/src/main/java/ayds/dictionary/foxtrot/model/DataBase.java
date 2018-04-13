@@ -11,8 +11,6 @@ public class DataBase {
     try (Connection connection = DriverManager.getConnection(url)) {
       if (connection != null) {
         DatabaseMetaData meta = connection.getMetaData();
-        System.out.println("The driver name is " + meta.getDriverName());
-        System.out.println("A new database has been created.");
 
         Statement statement = connection.createStatement();
         statement.setQueryTimeout(30);  // set timeout to 30 sec.
@@ -22,7 +20,6 @@ public class DataBase {
       }
 
     } catch (SQLException e) {
-      System.out.println(e.getMessage());
     }
   }
 

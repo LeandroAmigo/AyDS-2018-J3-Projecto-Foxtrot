@@ -2,7 +2,7 @@ package ayds.dictionary.foxtrot.fulllogic;
 
 import java.sql.*;
 
-public class DataBase {
+public class DataBase_Old {
 
   public static void createNewDatabase() {
 

@@ -1,4 +1,4 @@
-package ayds.dictionary.foxtrot.parsers;
+package ayds.dictionary.foxtrot.controller.parsers;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -11,7 +11,7 @@ import org.xml.sax.SAXException;
 
 import java.io.IOException;
 
-class ParserFromXML implements InputParser{
+public class ParserFromXML implements InputParser{
   
   private static ParserFromXML instance;
  
