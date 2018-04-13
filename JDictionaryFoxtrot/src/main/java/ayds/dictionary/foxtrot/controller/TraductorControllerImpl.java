@@ -20,13 +20,13 @@ class TraductorControllerImpl implements TraductorController {
     this.outputParser=parsers.getOutputParser();
   }
   @Override public void onEventGo(String request) {
-    String response;
+    String response=null;
     try {
       if (requestVacio(request))
         response = "Ingrese un termino antes de consultar";
-      else if (traductorModel.estaResultadoCacheado(request))
+      else if (traductorModel.estaResultadoCacheado(request)) 
         response = traductorModel.getResultadoCacheado(request);
-      else {
+      else{
         String responseXml = traductorModel.solicitarResultado(request);
         if (traductorModel.esResultadoValido(responseXml)) {
           String textoPlano = inputParser.format(responseXml);
@@ -34,8 +34,9 @@ class TraductorControllerImpl implements TraductorController {
           response = outputParser.resaltar(response, request);
           traductorModel.guardarResultado(request, response);
         } else
-          response = "No se encontro el resultado";
+            response = "No se encontro el resultado";
       }
+
       traductorView.updateTraduccion(response);
     }catch(TraductorException traductorException){
       traductorView.updateTraduccion(traductorException.getMessage());
@@ -45,6 +46,6 @@ class TraductorControllerImpl implements TraductorController {
     this.traductorView = traductorView;
   }
   private boolean requestVacio(String request){
-    return request==null;
+    return (request == null || request.isEmpty());
   }
 }
