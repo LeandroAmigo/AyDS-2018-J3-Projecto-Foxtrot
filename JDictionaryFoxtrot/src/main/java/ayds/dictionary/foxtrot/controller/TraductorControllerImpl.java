@@ -48,4 +48,11 @@ class TraductorControllerImpl implements TraductorController {
   private boolean requestVacio(String request){
     return (request == null || request.isEmpty());
   }
+  public void inicializarPersistenciaDelModelo(){
+    try { 
+        traductorModel.iniciarDatosPersistente();
+    }catch(TraductorException traductorException){
+      traductorView.updateTraduccion(traductorException.getMessage());
+    }
+  }
 }
