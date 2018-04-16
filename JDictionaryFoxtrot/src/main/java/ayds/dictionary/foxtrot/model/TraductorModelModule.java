@@ -7,7 +7,8 @@ public class TraductorModelModule {
   private TraductorModel traductorModel;
 
   private TraductorModelModule() {
-    traductorModel =  new TraductorModelImpl(ServiceYandex.getInstance());
+    DataBase dataBase= DataBaseSQL.getInstance();
+    traductorModel =  new TraductorModelImpl(ServiceYandex.getInstance(),dataBase);
   }
 
   public static TraductorModelModule getInstance() {

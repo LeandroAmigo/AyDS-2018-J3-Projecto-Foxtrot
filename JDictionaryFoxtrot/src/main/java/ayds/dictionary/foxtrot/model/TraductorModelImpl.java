@@ -6,20 +6,22 @@ import ayds.dictionary.foxtrot.model.services.Service;
 public class TraductorModelImpl implements TraductorModel{
 
   private Service service;
-  public TraductorModelImpl(Service service) {
-    DataBase.createNewDatabase();
+  private DataBase dataBase;
+  public TraductorModelImpl(Service service,DataBase dataBase) {
     this.service=service;
+    this.dataBase=dataBase
+    dataBase.createNewDatabase();
   }
 
   @Override
   public boolean estaResultadoCacheado(String request) {
-    String text = DataBase.getMeaning(request);
+    String text = dataBase.getMeaning(request);
     return text!=null;
  }
 
   @Override
   public String getResultadoCacheado(String request) {
-    return "[*]" + DataBase.getMeaning(request);
+    return "[*]" + dataBase.getMeaning(request);
   }
 
   @Override
@@ -34,7 +36,7 @@ public class TraductorModelImpl implements TraductorModel{
 
     @Override
     public void guardarResultado(String request, String response) {
-        DataBase.saveTerm(request, response);
+        dataBase.saveTerm(request, response);
     }
 
 }
