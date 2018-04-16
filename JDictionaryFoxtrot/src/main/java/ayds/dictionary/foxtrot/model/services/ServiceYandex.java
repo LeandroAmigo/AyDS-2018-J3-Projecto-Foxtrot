@@ -10,15 +10,16 @@ import java.io.IOException;
 
 public class ServiceYandex implements Service{
   private static ServiceYandex instance;
-  private YandexAPI wikiAPI;
+  private final String urlAPI = "https://translate.yandex.net/api/v1.5/tr/";
+  private YandexAPI yandexAPI;
 
   private ServiceYandex() {
     Retrofit retrofit = new Retrofit.Builder()
-    .baseUrl("https://translate.yandex.net/api/v1.5/tr/")
+    .baseUrl(urlAPI)
     .addConverterFactory(ScalarsConverterFactory.create())
     .build();
 
-    wikiAPI = retrofit.create(YandexAPI.class);
+    yandexAPI = retrofit.create(YandexAPI.class);
   }
   public static ServiceYandex getInstance(){
     if(instance == null) {
@@ -30,12 +31,11 @@ public class ServiceYandex implements Service{
       String retorno=null;
       Response<String> callResponse;
       try {
-        callResponse = wikiAPI.getTerm(request).execute();
+        callResponse = yandexAPI.getTerm(request).execute();
         retorno=callResponse.body();
       } catch (IOException e) {
         throw new TraductorException("Se produjo un error en la conexion con el servicio del traductor");
       }
-
       return retorno;
   }
 	@Override public boolean hayResultados(String respuesta){

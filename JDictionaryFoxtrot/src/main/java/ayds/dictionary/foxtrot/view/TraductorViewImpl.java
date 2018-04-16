@@ -17,25 +17,23 @@ public class TraductorViewImpl implements TraductorView {
   private JButton goButton;
   private JPanel contentPane;
   private JTextPane PaneldeTraduccion;
-
   private TraductorController traductorController;
   private TraductorModel traductorModel;
 
 	public TraductorViewImpl(TraductorController traductorController, TraductorModel traductorModel){
     this.traductorController=traductorController;
     this.traductorModel=traductorModel;
-
     PaneldeTraduccion.setContentType("text/html");
     initListeners();
   }
   private void initListeners() {
     goButton.addActionListener(new ActionListener() {
       @Override public void actionPerformed(ActionEvent e) {
-        //new Thread(new Runnable() {
-        //  @Override public void run() {
+        new Thread(new Runnable() {
+          @Override public void run() {
               traductorController.onEventGo(textField1.getText());
-        //  }
-        //}).start();
+          }
+        }).start();
      }
     });
   }

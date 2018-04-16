@@ -1,6 +1,8 @@
 package ayds.dictionary.foxtrot.model;
 
 import ayds.dictionary.foxtrot.excepciones.TraductorException;
+import ayds.dictionary.foxtrot.model.databases.DataBase;
+import ayds.dictionary.foxtrot.model.databases.DataBaseSQL;
 import ayds.dictionary.foxtrot.model.services.Service;
 
 public class TraductorModelImpl implements TraductorModel{
@@ -9,7 +11,7 @@ public class TraductorModelImpl implements TraductorModel{
   private DataBase dataBase;
   public TraductorModelImpl(Service service,DataBase dataBase) {
     this.service=service;
-    this.dataBase=dataBase
+    this.dataBase=dataBase;
     dataBase.createNewDatabase();
   }
 
@@ -34,8 +36,8 @@ public class TraductorModelImpl implements TraductorModel{
     return service.hayResultados(response);
   }
 
-    @Override
-    public void guardarResultado(String request, String response) {
+  @Override
+  public void guardarResultado(String request, String response) {
         dataBase.saveTerm(request, response);
     }
 

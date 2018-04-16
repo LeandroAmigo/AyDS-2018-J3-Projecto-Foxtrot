@@ -2,16 +2,16 @@ package ayds.dictionary.foxtrot.model.databases;
 
 import java.sql.*;
 
-public class DataBaseSQL {
+public class DataBaseSQL implements DataBase{
   private final String pathConnection = "jdbc:sqlite:./dictionary.db";
-  private Connection conecction;
+  private Connection connection;
   private Statement statementActual;
-  private DataBaseSQL instance;
+  private static DataBaseSQL instance;
   private DataBaseSQL(){}
 
-  public DataBaseSQL getInstance(){
+  public static DataBaseSQL getInstance(){
     if(instance==null)
-      instance=new DataBase();
+      instance=new DataBaseSQL();
     return instance;
   }
   public void createNewDatabase() {
@@ -63,13 +63,13 @@ public class DataBaseSQL {
       conectarBD();
       if (existeConexion()) {
         nuevaConsulta();
-        meaning= getStringMeaning();
+        meaning= getStringMeaning(term);
         cerrarConexion();
       }
     }catch(SQLException e) { }
     return meaning;
   }
-  private String getStringMeaning()throws SQLException{
+  private String getStringMeaning(String term)throws SQLException{
     ResultSet resultSet = statementActual.executeQuery("select * from terms WHERE term = '" + term + "'");
     resultSet.next();
     return resultSet.getString("meaning");
