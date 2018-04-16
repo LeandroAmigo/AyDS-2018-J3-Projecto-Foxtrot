@@ -1,5 +1,6 @@
 package ayds.dictionary.foxtrot.model;
 
+import ayds.dictionary.foxtrot.model.databases
 import ayds.dictionary.foxtrot.model.services.ServiceYandex;
 
 public class TraductorModelModule {
