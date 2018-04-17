@@ -28,20 +28,16 @@ public class ServiceYandex implements Service{
     return instance;
   }
   @Override public String obtenerTermino(String request) throws TraductorException {
-    Response<String> callResponse = ejecutarRequest(request);
-    return callResponse.body();
+      String retorno=null;
+      Response<String> callResponse;
+      try {
+        callResponse = yandexAPI.getTerm(request).execute();
+        retorno=callResponse.body();
+      } catch (IOException e) {
+        throw new TraductorException("Se produjo un error en la conexion con el servicio del traductor");
+      }
+      return retorno;
   }
-
-  private Response<String> ejecutarRequest(String request) throws TraductorException{
-    Response<String> callResponse;
-    try {
-      callResponse = yandexAPI.getTerm(request).execute();
-    } catch (IOException e) {
-      throw new TraductorException("Se produjo un error en la conexion con el servicio del traductor");
-    }
-    return callResponse;
-  }
-
 	@Override public boolean hayResultados(String respuesta){
     return respuesta!=null;
   }

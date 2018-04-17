@@ -27,7 +27,6 @@ public class TraductorControllerModule {
     TraductorView view = openTraductorWindowAndGetView(controller);
 
     controller.setTraductorView(view);
-    controller.inicializarPersistenciaDelModelo();
   }
 
   private TraductorController getTraductorController() {

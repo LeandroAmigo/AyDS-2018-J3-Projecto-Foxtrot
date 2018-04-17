@@ -19,40 +19,61 @@ class TraductorControllerImpl implements TraductorController {
     this.inputParser=parsers.getInputParser();
     this.outputParser=parsers.getOutputParser();
   }
-  @Override public void onEventGo(String request) {
-    String response=null;
-    try {
-      if (requestVacio(request))
-        response = "Ingrese un termino antes de consultar";
-      else if (traductorModel.estaResultadoCacheado(request)) 
-        response = traductorModel.getResultadoCacheado(request);
-      else{
-        String responseXml = traductorModel.solicitarResultado(request);
-        if (traductorModel.esResultadoValido(responseXml)) {
-          String textoPlano = inputParser.format(responseXml);
-          response = outputParser.format(textoPlano);
-          response = outputParser.resaltar(response, request);
-          traductorModel.guardarResultado(request, response);
-        } else
-            response = "No se encontro el resultado";
-      }
-
-      traductorView.updateTraduccion(response);
-    }catch(TraductorException traductorException){
-      traductorView.updateTraduccion(traductorException.getMessage());
+    @Override
+    public void onEventGo(String request) {
+        String response;
+            if (requestVacio(request))
+                response = "Ingrese un termino antes de consultar";
+            else if (requestYaAlmacenado(request))
+                response = obtenerResultadoCacheado(request);
+            else {
+                response = nuevaTraduccion(request);
+                if (encontroResultado(response)) {
+                    response = resaltarResultado(response, request);
+                    guardarResultado(request, response);
+                } else
+                    response = "No se encontro el resultado";
+            }
+        visualizar(response);
     }
-  }
+
+    private boolean requestVacio(String request){
+        return (request == null || request.isEmpty());
+    }
+    private boolean requestYaAlmacenado(String request) {
+        return traductorModel.estaResultadoCacheado(request);
+    }
+    private String obtenerResultadoCacheado(String request) {
+        return traductorModel.getResultadoCacheado(request);
+    }
+    private String nuevaTraduccion(String request) {
+        String response = null;
+        try {
+            String traduccionXML = traductorModel.solicitarResultado(request);
+            if (traductorModel.esResultadoValido(traduccionXML)) {
+                String traduccionSinFormato = inputParser.format(traduccionXML);
+                response = outputParser.format(traduccionSinFormato);
+            }
+        } catch (TraductorException traductorException) {
+            traductorView.updateTraduccion(traductorException.getMessage());
+        }
+        return response;
+    }
+    private boolean encontroResultado(String response) {
+        return response != null;
+    }
+    private String resaltarResultado(String response, String request) {
+        return outputParser.resaltar(response, request);
+    }
+    private void guardarResultado(String request, String response) {
+        traductorModel.guardarResultado(request, response);
+    }
+    private void visualizar(String response){
+        traductorView.updateTraduccion(response);
+    }
+
   @Override public void setTraductorView(TraductorView traductorView) {
     this.traductorView = traductorView;
   }
-  private boolean requestVacio(String request){
-    return (request == null || request.isEmpty());
-  }
-  public void inicializarPersistenciaDelModelo(){
-    try { 
-        traductorModel.iniciarDatosPersistente();
-    }catch(TraductorException traductorException){
-      traductorView.updateTraduccion(traductorException.getMessage());
-    }
-  }
+
 }

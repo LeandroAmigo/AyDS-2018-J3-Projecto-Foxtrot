@@ -12,19 +12,17 @@ public class TraductorModelImpl implements TraductorModel{
   public TraductorModelImpl(Service service,DataBase dataBase) {
     this.service=service;
     this.dataBase=dataBase;
-  }
-  @Override
-  public void iniciarDatosPersistente()throws TraductorModelException{
     dataBase.createNewDatabase();
   }
+
   @Override
-  public boolean estaResultadoCacheado(String request)throws TraductorModelException{
+  public boolean estaResultadoCacheado(String request) {
     String text = dataBase.getMeaning(request);
     return text!=null;
  }
 
   @Override
-  public String getResultadoCacheado(String request)throws TraductorModelException {
+  public String getResultadoCacheado(String request) {
     return "[*]" + dataBase.getMeaning(request);
   }
 
@@ -39,7 +37,7 @@ public class TraductorModelImpl implements TraductorModel{
   }
 
   @Override
-  public void guardarResultado(String request, String response) throws TraductorModelException{
+  public void guardarResultado(String request, String response) {
         dataBase.saveTerm(request, response);
     }
 

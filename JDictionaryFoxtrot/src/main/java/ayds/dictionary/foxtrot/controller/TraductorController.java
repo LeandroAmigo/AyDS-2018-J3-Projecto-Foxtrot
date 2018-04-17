@@ -6,5 +6,4 @@ public interface TraductorController {
 
   void onEventGo(String request);
   void setTraductorView(TraductorView traductorView);
-  void inicializarPersistenciaDelModelo();
 }
