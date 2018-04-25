@@ -32,4 +32,8 @@ class TranslatorModelImpl implements TranslatorModel {
       }
   }
 
+  @Override
+  public void setExceptionListener(ExceptionListener exceptionListener) {
+      TranslatorModelModule.getInstance().getExceptionHandler().setExceptionListener(exceptionListener);
+    }
 }

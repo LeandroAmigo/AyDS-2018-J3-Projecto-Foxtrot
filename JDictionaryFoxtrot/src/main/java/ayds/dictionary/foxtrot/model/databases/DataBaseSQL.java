@@ -1,6 +1,8 @@
 package ayds.dictionary.foxtrot.model.databases;
 
+import ayds.dictionary.foxtrot.exceptions.TranslatorException;
 import ayds.dictionary.foxtrot.model.Definition;
+import ayds.dictionary.foxtrot.model.TranslatorModelModule;
 
 import java.sql.*;
 
@@ -20,7 +22,12 @@ class DataBaseSQL implements DataBase{
       }
     }
     catch (SQLException e) {
+      notifyExceptionHandler("Ocurrió un error en la creación de la base de datos");
     }
+  }
+
+  private void notifyExceptionHandler(String message) {
+    TranslatorModelModule.getInstance().getExceptionHandler().notifyException(new TranslatorException(message));
   }
 
   private static Connection createConnection() throws SQLException{
@@ -44,6 +51,7 @@ class DataBaseSQL implements DataBase{
         statement.executeUpdate("insert into terms values(null, '" + term + "', '" + meaning + "', 1)");
         closeConnection(connection);
       } catch (SQLException e) {
+        notifyExceptionHandler("Ocurrió un error en el guardado del término a la base de datos.");
       }
     }
   }
@@ -60,6 +68,7 @@ class DataBaseSQL implements DataBase{
       closeConnection(connection);
     }
     catch (SQLException e) {
+      notifyExceptionHandler("Ocurrió un error en el acceso a la base de datos.");
     }
     return definition;
   }

@@ -1,18 +1,14 @@
 package ayds.dictionary.foxtrot.view;
 import ayds.dictionary.foxtrot.controller.TranslatorController;
 import ayds.dictionary.foxtrot.model.Definition;
+import ayds.dictionary.foxtrot.model.ExceptionListener;
 import ayds.dictionary.foxtrot.model.TranslatorModel;
 import ayds.dictionary.foxtrot.model.TranslatorModelListener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
-import javax.swing.WindowConstants;
+import javax.swing.*;
 
 class TranslatorViewImpl implements TranslatorView {
   private JTextField textField1;
@@ -38,7 +34,9 @@ class TranslatorViewImpl implements TranslatorView {
   private void initListeners() {
     initButtonListener();
     initTraductorModelListener();
+    initExceptionListener();
   }
+
 
   private void  initButtonListener(){
     goButton.addActionListener(new ActionListener() {
@@ -58,13 +56,35 @@ class TranslatorViewImpl implements TranslatorView {
   }
 
   private void updateTranslationPanel(Definition definition) {
-    String meaning;
-    if (!definition.isMeaningEmpty())
-       meaning = outputParser.format(definition.getMeaning(), definition.getTerm());
-    else
-      meaning = "No existe resultado";
+    String meaning = formatMeaning(definition);
     translatorPanel.setText(meaning);
   }
+
+  private String formatMeaning(Definition definition) {
+	  String meaning = "";
+	  if(!definition.isMeaningEmpty())
+	    meaning = outputParser.format(definition.getMeaning(), definition.getTerm());
+	  return meaning;
+
+  }
+
+  private void initExceptionListener() {
+	  translatorModel.setExceptionListener(new ExceptionListener() {
+        @Override
+        public void notifyMessage(String message) {
+          showWindowException(message);
+        }
+      });
+
+  }
+
+  private void showWindowException(String message) {
+    JOptionPane.showMessageDialog(new JFrame(),
+            message,
+            "Mensaje de Error",
+            JOptionPane.ERROR_MESSAGE);
+  }
+
 
   public void showView() {
     JFrame frame = new JFrame("Online Translator");

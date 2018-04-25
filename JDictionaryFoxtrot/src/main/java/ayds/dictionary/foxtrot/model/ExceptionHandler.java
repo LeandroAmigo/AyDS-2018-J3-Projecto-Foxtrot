@@ -1,0 +1,1 @@
+package ayds.dictionary.foxtrot.model;public interface ExceptionHandler {    void setExceptionListener (ExceptionListener exceptionListener);    void notifyException( Exception exception);}

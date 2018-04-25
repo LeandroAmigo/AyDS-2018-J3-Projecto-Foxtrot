@@ -4,4 +4,5 @@ public interface TranslatorModel {
    void requestResult(String term) ;
    void setListener(TranslatorModelListener listener);
    Definition getDefinition();
+   void setExceptionListener( ExceptionListener exceptionListener);
 }

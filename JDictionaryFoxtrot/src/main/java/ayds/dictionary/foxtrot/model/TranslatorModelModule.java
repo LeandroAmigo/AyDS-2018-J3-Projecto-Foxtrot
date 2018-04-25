@@ -7,6 +7,7 @@ import ayds.dictionary.foxtrot.model.services.ServiceModule;
 public class TranslatorModelModule {
   private static TranslatorModelModule instance;
   private TranslatorModel translatorModel;
+  private ExceptionHandler exceptionHandler = new ExceptionHandlerImpl();
 
   private TranslatorModelModule() {
     DataBase dataBase= TranslatorDatabasesModule.getInstance().getDataBase();
@@ -24,4 +25,9 @@ public class TranslatorModelModule {
   public TranslatorModel getTranslatorModel() {
     return translatorModel;
   }
+
+  public ExceptionHandler getExceptionHandler() {
+    return exceptionHandler;
+  }
 }
+
