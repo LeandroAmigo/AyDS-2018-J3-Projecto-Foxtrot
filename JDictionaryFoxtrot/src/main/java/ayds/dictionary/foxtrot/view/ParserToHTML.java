@@ -1,7 +1,7 @@
-package ayds.dictionary.foxtrot.controller.parsers;
+package ayds.dictionary.foxtrot.view;
 
 
-public class ParserToHTML implements OutputParser{
+public class ParserToHTML implements OutputParser {
   
   private static ParserToHTML instance;
   private String texto;

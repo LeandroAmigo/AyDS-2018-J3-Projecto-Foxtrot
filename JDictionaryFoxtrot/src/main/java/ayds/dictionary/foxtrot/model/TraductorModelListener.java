@@ -1,0 +1,1 @@
+package ayds.dictionary.foxtrot.model;public interface TraductorModelListener {    void didUpdateTraductor();}

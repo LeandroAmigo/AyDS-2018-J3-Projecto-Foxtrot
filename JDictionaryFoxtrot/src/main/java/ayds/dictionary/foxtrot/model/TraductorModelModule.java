@@ -1,15 +1,17 @@
 package ayds.dictionary.foxtrot.model;
 
 import ayds.dictionary.foxtrot.model.databases.*;
-import ayds.dictionary.foxtrot.model.services.ServiceYandex;
+import ayds.dictionary.foxtrot.model.services.Service;
+import ayds.dictionary.foxtrot.model.services.ServiceModule;
 
 public class TraductorModelModule {
   private static TraductorModelModule instance;
   private TraductorModel traductorModel;
 
   private TraductorModelModule() {
-    DataBase dataBase= DataBaseSQL.getInstance();
-    traductorModel =  new TraductorModelImpl(ServiceYandex.getInstance(),dataBase);
+    DataBase dataBase= TraductorDatabasesModule.getInstance().getDataBase();
+    Service service = ServiceModule.getInstance().getRemoteSource();
+    traductorModel =  new TraductorModelImpl(new RepositoryImpl(dataBase,service));
   }
 
   public static TraductorModelModule getInstance() {

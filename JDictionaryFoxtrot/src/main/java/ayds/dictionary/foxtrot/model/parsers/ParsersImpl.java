@@ -1,4 +1,6 @@
-package ayds.dictionary.foxtrot.controller.parsers;
+package ayds.dictionary.foxtrot.model.parsers;
+
+import ayds.dictionary.foxtrot.view.OutputParser;
 
 public class ParsersImpl implements Parsers {
     private InputParser inputParser;

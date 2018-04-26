@@ -1,11 +1,11 @@
 package ayds.dictionary.foxtrot.view;
-import javax.swing.*;
 
 import ayds.dictionary.foxtrot.controller.TraductorController;
 import ayds.dictionary.foxtrot.model.TraductorModelModule;
 public class TraductorViewModule {
 
   private static TraductorViewModule instance;
+  private TraductorView traductorView;
 
   private TraductorViewModule() { }
 
@@ -18,16 +18,11 @@ public class TraductorViewModule {
 
 
   public TraductorView openTraductorWindow(TraductorController traductorController) {
-    TraductorViewImpl traductorView = new TraductorViewImpl(traductorController, TraductorModelModule.getInstance().getTraductorModel());
-    inicializarGUI(traductorView.getContentPane());
+    if (traductorView == null) {
+      traductorView = new TraductorViewImpl(traductorController, TraductorModelModule.getInstance().getTraductorModel(),ParserToHTML.getInstance());
+      traductorView.inicializarGUI();
+    }
     return traductorView;
   }
 
-  private void inicializarGUI(JPanel contentPane) {
-    JFrame frame = new JFrame("Online Dictionary");
-    frame.setContentPane(contentPane);
-    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    frame.pack();
-    frame.setVisible(true);
-  }
 }
