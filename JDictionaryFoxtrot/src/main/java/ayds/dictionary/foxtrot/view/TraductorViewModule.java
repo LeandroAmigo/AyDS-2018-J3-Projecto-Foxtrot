@@ -3,7 +3,6 @@ package ayds.dictionary.foxtrot.view;
 import ayds.dictionary.foxtrot.controller.TraductorController;
 import ayds.dictionary.foxtrot.model.TraductorModelModule;
 public class TraductorViewModule {
-
   private static TraductorViewModule instance;
   private TraductorView traductorView;
 
@@ -15,7 +14,6 @@ public class TraductorViewModule {
     }
     return instance;
   }
-
 
   public TraductorView openTraductorWindow(TraductorController traductorController) {
     if (traductorView == null) {

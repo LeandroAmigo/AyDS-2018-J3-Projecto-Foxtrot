@@ -1,8 +1,5 @@
 package ayds.dictionary.foxtrot.view;
-
-
 public class ParserToHTML implements OutputParser {
-  
   private static ParserToHTML instance;
   private String texto;
   private static final String fuente= "arial";
@@ -19,11 +16,10 @@ public class ParserToHTML implements OutputParser {
 
 	@Override public String format(String texto) {
 	  this.texto=texto;
-	      
 	  formatNow();
-
 	  return this.texto;
   }
+
   private void formatNow(){
       remplazarSaltosdeLinea();
       remplazarComillas();
@@ -32,9 +28,11 @@ public class ParserToHTML implements OutputParser {
   private void remplazarSaltosdeLinea(){
     texto=texto.replace("\\n", "<br>");
   }
+
   private void remplazarComillas(){
     texto=texto.replace("'", "`");
   }
+
   private void definirFuente(){
     texto= "<font face=\""+fuente+"\">"+texto+"</font>";
   }

@@ -2,13 +2,13 @@ package ayds.dictionary.foxtrot.model;
 
 import ayds.dictionary.foxtrot.excepciones.TraductorException;
 
-public class TraductorModelImpl implements TraductorModel{
+class TraductorModelImpl implements TraductorModel{
 
  private final Repository repository;
  private TraductorModelListener listener;
  private String meaning;
 
-  public TraductorModelImpl(Repository repository) {
+  TraductorModelImpl(Repository repository) {
     this.repository= repository;
   }
 

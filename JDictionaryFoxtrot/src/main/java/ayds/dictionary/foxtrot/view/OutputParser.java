@@ -1,5 +1,5 @@
 package ayds.dictionary.foxtrot.view;
 public interface OutputParser {
-  public String format(String texto);
-  public String resaltar(String texto, String termino);
+  String format(String texto);
+  String resaltar(String texto, String termino);
 }

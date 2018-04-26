@@ -1,6 +1,5 @@
 package ayds.dictionary.foxtrot.controller;
 
-import ayds.dictionary.foxtrot.excepciones.TraductorException;
 import ayds.dictionary.foxtrot.model.TraductorModel;
 import ayds.dictionary.foxtrot.view.TraductorView;
 

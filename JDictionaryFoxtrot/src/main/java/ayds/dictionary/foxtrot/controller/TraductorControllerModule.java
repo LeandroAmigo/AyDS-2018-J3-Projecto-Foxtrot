@@ -5,7 +5,6 @@ import ayds.dictionary.foxtrot.view.TraductorView;
 import ayds.dictionary.foxtrot.view.TraductorViewModule;
 
 public class TraductorControllerModule {
-
   private static TraductorControllerModule instance;
 
   private TraductorControllerModule() { }
@@ -18,16 +17,12 @@ public class TraductorControllerModule {
   }
 
   void startApplication() {
-
     TraductorController controller = getTraductorController();
-
     TraductorView view = openTraductorWindowAndGetView(controller);
-
     controller.setTraductorView(view);
   }
 
   private TraductorController getTraductorController() {
-   //// Parsers parsers=new ParsersImpl(ParserFromXML.getInstance(), ParserToHTML.getInstance());
     return new TraductorControllerImpl(TraductorModelModule.getInstance().getTraductorModel());
   }
 

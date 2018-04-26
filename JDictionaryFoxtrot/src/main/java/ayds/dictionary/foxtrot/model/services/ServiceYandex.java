@@ -4,9 +4,7 @@ import ayds.dictionary.foxtrot.excepciones.TraductorException;
 import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 import retrofit2.Response;
-
 import java.io.IOException;
-
 
 class ServiceYandex implements Service{
 
@@ -18,10 +16,7 @@ class ServiceYandex implements Service{
     .baseUrl(urlAPI)
     .addConverterFactory(ScalarsConverterFactory.create())
     .build();
-
     yandexAPI = retrofit.create(YandexAPI.class);
-
-
   }
 
   @Override public String getMeaning(String term) {

@@ -10,7 +10,7 @@ class DataBaseSQL implements DataBase{
     createNewDatabase();
   }
 
-  private static void createNewDatabase() {
+  private void createNewDatabase() {
     try (Connection connection = createConnection()) {
       if (connection != null) {
         Statement statement = createStatement(connection);
@@ -42,7 +42,6 @@ class DataBaseSQL implements DataBase{
     }
   }
 
-
   public String getMeaning (String term){
     String meaning = null;
     Connection connection = null;
@@ -64,4 +63,4 @@ class DataBaseSQL implements DataBase{
       connection.close();
   }
 
-    }
+}
