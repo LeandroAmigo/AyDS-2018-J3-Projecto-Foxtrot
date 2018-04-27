@@ -1,5 +1,6 @@
 package ayds.dictionary.foxtrot.view;
 import ayds.dictionary.foxtrot.controller.TraductorController;
+import ayds.dictionary.foxtrot.model.Definition;
 import ayds.dictionary.foxtrot.model.TraductorModel;
 import ayds.dictionary.foxtrot.model.TraductorModelListener;
 
@@ -47,15 +48,18 @@ class TraductorViewImpl implements TraductorView {
 	  traductorModel.setListener(new TraductorModelListener() {
         @Override
         public void didUpdateTraductor() {
-            updateTranslationPanel();
+            updateTranslationPanel(traductorModel.getDefinition());
         }
       });
   }
 
-  private void updateTranslationPanel() {
-	  String meaning = traductorModel.getMeaning();
-	  meaning = outputParser.format(meaning);
-    PaneldeTraduccion.setText(outputParser.resaltar(meaning,meaning));
+  private void updateTranslationPanel(Definition definition) {
+    String meaning;
+    if (!definition.isMeaningEmpty())
+       meaning = outputParser.format(definition.getMeaning(), definition.getTerm());
+    else
+      meaning= "no existe resultado";
+    PaneldeTraduccion.setText(meaning);
   }
 
   public void inicializarGUI() {

@@ -24,13 +24,13 @@ public class ParserFromXML implements InputParser {
     return instance;
   }
 
-	@Override public String format(String texto) throws TraductorException {
+	@Override public String format(String texto)  {
 	  Document documento= getDocument(texto);
 	  NodeList nodoTexto = getNodo(documento);
     String contenido=getContenido(nodoTexto);
 	  return contenido;
   }
-  private Document getDocument(String texto) throws TraductorException {
+  private Document getDocument(String texto) {
     DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
     DocumentBuilder db = null;
     Document doc=null;
@@ -38,9 +38,9 @@ public class ParserFromXML implements InputParser {
       db = dbf.newDocumentBuilder();
       doc=db.parse(new InputSource(new java.io.StringReader(texto)));
     } catch (SAXException | ParserConfigurationException e) {
-      throw new TraductorException("Se produjo un error parseando la respuesta");
+   //   throw new TraductorException("Se produjo un error parseando la respuesta");
     } catch (IOException e) {
-      throw new TraductorException("Se produjo un Error de Entrada/Salida");
+   //   throw new TraductorException("Se produjo un Error de Entrada/Salida");
     }
     return doc;
   }

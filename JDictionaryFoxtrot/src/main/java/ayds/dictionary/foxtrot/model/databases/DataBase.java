@@ -1,6 +1,8 @@
 package ayds.dictionary.foxtrot.model.databases;
 
+import ayds.dictionary.foxtrot.model.Definition;
+
 public interface  DataBase {
-   void saveTerm(String term, String meaning);
-   String getMeaning(String term);
+   void saveDefinition(Definition definition);
+   Definition getMeaning(String term);
 }

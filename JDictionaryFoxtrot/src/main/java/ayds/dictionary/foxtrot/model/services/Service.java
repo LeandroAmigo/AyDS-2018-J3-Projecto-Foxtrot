@@ -1,7 +1,9 @@
 package ayds.dictionary.foxtrot.model.services;
 
+import ayds.dictionary.foxtrot.model.Definition;
+
 public interface Service {
 
-  String getMeaning(String term);
+  Definition getMeaning(String term);
 
 }

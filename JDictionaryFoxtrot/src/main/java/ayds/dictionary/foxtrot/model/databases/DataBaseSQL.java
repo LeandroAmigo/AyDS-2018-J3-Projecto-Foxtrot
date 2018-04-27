@@ -1,5 +1,7 @@
 package ayds.dictionary.foxtrot.model.databases;
 
+import ayds.dictionary.foxtrot.model.Definition;
+
 import java.sql.*;
 
 class DataBaseSQL implements DataBase{
@@ -31,31 +33,35 @@ class DataBaseSQL implements DataBase{
     return statement;
   }
 
-  public void saveTerm(String term, String meaning) {
+  public void saveDefinition(Definition definition) {
     Connection connection = null;
-    try {
-      connection = createConnection();
-      Statement statement = createStatement(connection);
-      statement.executeUpdate("insert into terms values(null, '" + term + "', '" + meaning + "', 1)");
-      closeConnection(connection);
-    } catch (SQLException e) {
+    String term = definition.getTerm();
+    if ( !definition.isMeaningEmpty()) {
+      String meaning = definition.getMeaning();
+      try {
+        connection = createConnection();
+        Statement statement = createStatement(connection);
+        statement.executeUpdate("insert into terms values(null, '" + term + "', '" + meaning + "', 1)");
+        closeConnection(connection);
+      } catch (SQLException e) {
+      }
     }
   }
 
-  public String getMeaning (String term){
-    String meaning = null;
+  public Definition getMeaning (String term){
+    Definition definition = null;
     Connection connection = null;
     try {
       connection = createConnection();
       Statement statement = createStatement(connection);
       ResultSet rs = statement.executeQuery("select * from terms WHERE term = '" + term + "'");
       if (rs.next())
-        meaning = rs.getString("meaning");
+        definition = new Definition(term, rs.getString("meaning"));
       closeConnection(connection);
     }
     catch (SQLException e) {
     }
-    return meaning;
+    return definition;
   }
 
   private void closeConnection(Connection connection) throws SQLException{

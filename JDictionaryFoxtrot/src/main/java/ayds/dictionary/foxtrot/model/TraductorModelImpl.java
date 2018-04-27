@@ -6,28 +6,26 @@ class TraductorModelImpl implements TraductorModel{
 
  private final Repository repository;
  private TraductorModelListener listener;
- private String meaning;
+ private Definition definition;
 
   TraductorModelImpl(Repository repository) {
     this.repository= repository;
   }
 
+  @Override
   public void setListener(TraductorModelListener traductorModelListener) {
       this.listener = traductorModelListener;
     }
 
   @Override
   public void solicitarResultado(String term) {
-    try {
-      meaning = repository.getMeaning(term);
-    } catch(TraductorException e) {
-      System.out.println(e.getMessage());
-    }
-    notifyListener();
+      definition = repository.getDefinition(term);
+      notifyListener();
   }
 
-  public String getMeaning(){
-      return meaning;
+  @Override
+  public Definition getDefinition(){
+      return definition;
   }
 
   private void notifyListener() {
