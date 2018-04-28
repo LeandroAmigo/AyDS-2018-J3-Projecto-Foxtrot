@@ -4,7 +4,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import ayds.dictionary.foxtrot.excepciones.TraductorException;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -24,31 +23,32 @@ public class ParserFromXML implements InputParser {
     return instance;
   }
 
-	@Override public String format(String texto)  {
-	  Document documento= getDocument(texto);
-	  NodeList nodoTexto = getNodo(documento);
-    String contenido=getContenido(nodoTexto);
-	  return contenido;
+	@Override public String format(String text)  {
+	  Document document= getDocument(text);
+	  NodeList nodeList = getNode(document);
+    String content = getContenido(nodeList);
+	  return content;
   }
-  private Document getDocument(String texto) {
+  private Document getDocument(String text) {
     DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
     DocumentBuilder db = null;
-    Document doc=null;
+    Document doc = null;
     try {
       db = dbf.newDocumentBuilder();
-      doc=db.parse(new InputSource(new java.io.StringReader(texto)));
+      doc = db.parse(new InputSource(new java.io.StringReader(text)));
     } catch (SAXException | ParserConfigurationException e) {
-   //   throw new TraductorException("Se produjo un error parseando la respuesta");
+   //   throw new TranslatorException("Se produjo un error parseando la respuesta");
     } catch (IOException e) {
-   //   throw new TraductorException("Se produjo un Error de Entrada/Salida");
+   //   throw new TranslatorException("Se produjo un Error de Entrada/Salida");
     }
     return doc;
   }
-  private NodeList getNodo(Document documento){
-    return documento.getDocumentElement().getElementsByTagName("text");
+  private NodeList getNode(Document document){
+    return document.getDocumentElement().getElementsByTagName("text");
   }
-  private String getContenido(NodeList nodoTexto){
-    return nodoTexto.item(0).getTextContent();
+
+  private String getContenido(NodeList nodeList){
+    return nodeList.item(0).getTextContent();
   }
 
  }

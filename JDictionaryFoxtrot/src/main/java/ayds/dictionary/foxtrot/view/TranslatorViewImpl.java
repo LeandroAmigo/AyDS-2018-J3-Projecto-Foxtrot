@@ -1,8 +1,8 @@
 package ayds.dictionary.foxtrot.view;
-import ayds.dictionary.foxtrot.controller.TraductorController;
+import ayds.dictionary.foxtrot.controller.TranslatorController;
 import ayds.dictionary.foxtrot.model.Definition;
-import ayds.dictionary.foxtrot.model.TraductorModel;
-import ayds.dictionary.foxtrot.model.TraductorModelListener;
+import ayds.dictionary.foxtrot.model.TranslatorModel;
+import ayds.dictionary.foxtrot.model.TranslatorModelListener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,21 +14,25 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.WindowConstants;
 
-class TraductorViewImpl implements TraductorView {
+class TranslatorViewImpl implements TranslatorView {
   private JTextField textField1;
   private JButton goButton;
   private JPanel contentPane;
-  private JTextPane PaneldeTraduccion;
-  private TraductorController traductorController;
-  private TraductorModel traductorModel;
+  private JTextPane translatorPanel;
+  private TranslatorController translatorController;
+  private TranslatorModel translatorModel;
   private OutputParser outputParser;
 
-	TraductorViewImpl(TraductorController traductorController, TraductorModel traductorModel, OutputParser outputParser){
-    this.traductorController=traductorController;
-    this.traductorModel= traductorModel;
+	TranslatorViewImpl(TranslatorController translatorController, TranslatorModel translatorModel, OutputParser outputParser){
+    this.translatorController = translatorController;
+    this.translatorModel = translatorModel;
     this.outputParser = outputParser;
-    PaneldeTraduccion.setContentType("text/html");
+    initTranslatorPanel();
     initListeners();
+  }
+
+  private void initTranslatorPanel() {
+    translatorPanel.setContentType("text/html");
   }
 
   private void initListeners() {
@@ -39,16 +43,16 @@ class TraductorViewImpl implements TraductorView {
   private void  initButtonListener(){
     goButton.addActionListener(new ActionListener() {
       @Override public void actionPerformed(ActionEvent e) {
-        traductorController.onEventGo(textField1.getText().trim());
+        translatorController.onEventGo(textField1.getText().trim());
       }
      });
   }
 
   private void  initTraductorModelListener(){
-	  traductorModel.setListener(new TraductorModelListener() {
+	  translatorModel.setListener(new TranslatorModelListener() {
         @Override
         public void didUpdateTraductor() {
-            updateTranslationPanel(traductorModel.getDefinition());
+            updateTranslationPanel(translatorModel.getDefinition());
         }
       });
   }
@@ -58,11 +62,11 @@ class TraductorViewImpl implements TraductorView {
     if (!definition.isMeaningEmpty())
        meaning = outputParser.format(definition.getMeaning(), definition.getTerm());
     else
-      meaning= "no existe resultado";
-    PaneldeTraduccion.setText(meaning);
+      meaning = "No existe resultado";
+    translatorPanel.setText(meaning);
   }
 
-  public void inicializarGUI() {
+  public void showView() {
     JFrame frame = new JFrame("Online Translator");
     frame.setContentPane(contentPane);
     frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

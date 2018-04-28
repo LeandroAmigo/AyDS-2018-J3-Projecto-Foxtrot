@@ -1,24 +1,22 @@
 package ayds.dictionary.foxtrot.model;
 
-import ayds.dictionary.foxtrot.excepciones.TraductorException;
-
-class TraductorModelImpl implements TraductorModel{
+class TranslatorModelImpl implements TranslatorModel {
 
  private final Repository repository;
- private TraductorModelListener listener;
+ private TranslatorModelListener listener;
  private Definition definition;
 
-  TraductorModelImpl(Repository repository) {
+  TranslatorModelImpl(Repository repository) {
     this.repository= repository;
   }
 
   @Override
-  public void setListener(TraductorModelListener traductorModelListener) {
-      this.listener = traductorModelListener;
+  public void setListener(TranslatorModelListener translatorModelListener) {
+      this.listener = translatorModelListener;
     }
 
   @Override
-  public void solicitarResultado(String term) {
+  public void requestResult(String term) {
       definition = repository.getDefinition(term);
       notifyListener();
   }
