@@ -37,7 +37,6 @@ class TranslatorViewImpl implements TranslatorView {
     initExceptionListener();
   }
 
-
   private void  initButtonListener() {
     goButton.addActionListener(new ActionListener() {
       @Override
