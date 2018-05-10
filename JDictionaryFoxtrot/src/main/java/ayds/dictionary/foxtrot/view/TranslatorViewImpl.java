@@ -38,12 +38,16 @@ class TranslatorViewImpl implements TranslatorView {
   }
 
 
-  private void  initButtonListener(){
+  private void  initButtonListener() {
     goButton.addActionListener(new ActionListener() {
-      @Override public void actionPerformed(ActionEvent e) {
-        translatorController.onEventGo(textField1.getText().trim());
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (InputValidation.isInputValid(textField1.getText().trim()))
+          translatorController.onEventGo(textField1.getText().trim());
+        else
+          showWindowException("Ingrese un termino valido");
       }
-     });
+    });
   }
 
   private void  initTraductorModelListener(){
