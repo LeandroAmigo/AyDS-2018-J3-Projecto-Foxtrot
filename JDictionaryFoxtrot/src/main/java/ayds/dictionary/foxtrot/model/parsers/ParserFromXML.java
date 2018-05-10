@@ -4,6 +4,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import ayds.dictionary.foxtrot.exceptions.TranslatorException;
+import ayds.dictionary.foxtrot.model.TranslatorModelModule;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
@@ -37,12 +39,17 @@ public class ParserFromXML implements InputParser {
       db = dbf.newDocumentBuilder();
       doc = db.parse(new InputSource(new java.io.StringReader(text)));
     } catch (SAXException | ParserConfigurationException e) {
-   //   throw new TranslatorException("Se produjo un error parseando la respuesta");
+      notifyExceptionHandler("Se produjo un error parseando la respuesta");
     } catch (IOException e) {
-   //   throw new TranslatorException("Se produjo un Error de Entrada/Salida");
+      notifyExceptionHandler("Se produjo un Error de Entrada/Salida");
     }
     return doc;
   }
+
+  private void notifyExceptionHandler(String message) {
+    TranslatorModelModule.getInstance().getExceptionHandler().notifyException(new TranslatorException(message));
+  }
+
   private NodeList getNode(Document document){
     return document.getDocumentElement().getElementsByTagName("text");
   }
