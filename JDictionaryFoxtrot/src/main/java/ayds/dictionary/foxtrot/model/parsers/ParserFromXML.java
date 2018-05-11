@@ -39,16 +39,18 @@ public class ParserFromXML implements InputParser {
       db = dbf.newDocumentBuilder();
       doc = db.parse(new InputSource(new java.io.StringReader(text)));
     } catch (SAXException | ParserConfigurationException e) {
-      notifyExceptionHandler("Se produjo un error parseando la respuesta");
+         notifyExceptionHandler("Se produjo un error parseando la respuesta");
     } catch (IOException e) {
-      notifyExceptionHandler("Se produjo un Error de Entrada/Salida");
+         notifyExceptionHandler("Se produjo un Error de Entrada/Salida");
     }
     return doc;
   }
 
+
   private void notifyExceptionHandler(String message) {
     TranslatorModelModule.getInstance().getExceptionHandler().notifyException(new TranslatorException(message));
   }
+
 
   private NodeList getNode(Document document){
     return document.getDocumentElement().getElementsByTagName("text");

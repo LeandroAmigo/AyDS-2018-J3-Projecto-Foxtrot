@@ -2,6 +2,7 @@ package ayds.dictionary.foxtrot.model.databases;
 
 import ayds.dictionary.foxtrot.exceptions.TranslatorException;
 import ayds.dictionary.foxtrot.model.Definition;
+import ayds.dictionary.foxtrot.model.Source;
 import ayds.dictionary.foxtrot.model.TranslatorModelModule;
 
 import java.sql.*;
@@ -42,13 +43,14 @@ class DataBaseSQL implements DataBase{
 
   public void saveDefinition(Definition definition) {
     Connection connection = null;
-    String term = definition.getTerm();
     if ( !definition.isMeaningEmpty()) {
+      String term = definition.getTerm();
       String meaning = definition.getMeaning();
+      int source =definition.getSource().ordinal();
       try {
         connection = createConnection();
         Statement statement = createStatement(connection);
-        statement.executeUpdate("insert into terms values(null, '" + term + "', '" + meaning + "', 1)");
+        statement.executeUpdate("insert into terms values(null, '" + term + "', '" + meaning + "', "+source+")");
         closeConnection(connection);
       } catch (SQLException e) {
         notifyExceptionHandler("Ocurrió un error en el guardado del término a la base de datos.");
@@ -64,7 +66,7 @@ class DataBaseSQL implements DataBase{
       Statement statement = createStatement(connection);
       ResultSet rs = statement.executeQuery("select * from terms WHERE term = '" + term + "'");
       if (rs.next())
-        definition = new Definition(term, rs.getString("meaning"));
+          definition = new Definition(term, rs.getString("meaning"), Source.values()[(rs.getInt("source"))] );
       closeConnection(connection);
     }
     catch (SQLException e) {

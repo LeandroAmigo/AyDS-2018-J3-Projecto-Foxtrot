@@ -1,1 +1,1 @@
-package ayds.dictionary.foxtrot.view;class InputValidation {    public static boolean isInputValid(String term) {        boolean isValid = false;        if (term.matches("([A-Za-zÀ-ÿ]+\\s?)+"))            isValid = true;        return isValid;    }}
+package ayds.dictionary.foxtrot.view;public class InputValidation {    public static boolean isInputValid(String term) {        boolean isValid = false;        if (term.matches("([A-Za-zÀ-ÿ]+\\s?)+"))            isValid = true;        return isValid;    }}

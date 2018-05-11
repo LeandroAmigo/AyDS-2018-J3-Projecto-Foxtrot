@@ -1,62 +1,95 @@
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/view/TraductorView.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/tests/DataBaseTests.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/model/services/YandexAPI.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/model/services/ServiceYandex.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/model/services/Service.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/model/TraductorModelModule.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/model/TraductorModelImpl.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/model/TraductorModel.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/model/DataBase.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/fulllogic/YandexAPI.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/fulllogic/MainWindow.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/fulllogic/MainWindow$1.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/fulllogic/MainWindow$1$1.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/fulllogic/DataBase_Old.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/controller/parsers/ParsersImpl.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/controller/parsers/Parsers.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/controller/parsers/ParserToHTML.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/controller/parsers/ParserFromXML.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/controller/parsers/OutputParser.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/controller/parsers/InputParser.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/controller/TraductorControllerModule.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/controller/TraductorControllerImpl.class
-JDictionaryFoxtrot/.gradle/buildOutputCleanup/built.bin
-JDictionaryFoxtrot/.gradle/4.0/fileHashes/fileHashes.lock
-JDictionaryFoxtrot/.gradle/4.0/fileHashes/fileHashes.bin
-JDictionaryFoxtrot/.gradle/4.0/fileChanges/last-build.bin
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/controller/TraductorController.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/controller/Main.class
-JDictionaryFoxtrot/.idea/workspace.xml
-JDictionaryFoxtrot/.idea/uiDesigner.xml
-JDictionaryFoxtrot/.idea/modules/DictionaryFoxtrot_test.iml
-JDictionaryFoxtrot/.idea/modules/DictionaryFoxtrot_main.iml
-JDictionaryFoxtrot/.idea/modules/DictionaryFoxtrot.iml
-JDictionaryFoxtrot/.idea/modules.xml
-JDictionaryFoxtrot/.idea/misc.xml
-JDictionaryFoxtrot/.idea/libraries/Gradle__org_xerial_sqlite_jdbc_3_21_0.xml
-JDictionaryFoxtrot/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml
-JDictionaryFoxtrot/.idea/libraries/Gradle__junit_junit_4_12.xml
-JDictionaryFoxtrot/.idea/libraries/Gradle__com_squareup_retrofit2_retrofit_2_4_0.xml
-JDictionaryFoxtrot/.idea/libraries/Gradle__com_squareup_retrofit2_converter_scalars_2_4_0.xml
-JDictionaryFoxtrot/.idea/libraries/Gradle__com_squareup_okio_okio_1_14_0.xml
-JDictionaryFoxtrot/.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_3_10_0.xml
-JDictionaryFoxtrot/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_2.xml
-JDictionaryFoxtrot/.idea/gradle.xml
-JDictionaryFoxtrot/.idea/compiler.xml
-JDictionaryFoxtrot/.idea/.name
-JDictionaryFoxtrot/.gradle/buildOutputCleanup/cache.properties.lock
-JDictionaryFoxtrot/.gradle/buildOutputCleanup/cache.properties
-JDictionaryFoxtrot/out/production/classes/com/intellij/uiDesigner/core/VerticalInfo.class
-JDictionaryFoxtrot/out/production/classes/com/intellij/uiDesigner/core/Util.class
-JDictionaryFoxtrot/out/production/classes/com/intellij/uiDesigner/core/SupportCode.class
-JDictionaryFoxtrot/out/production/classes/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class
-JDictionaryFoxtrot/out/production/classes/com/intellij/uiDesigner/core/Spacer.class
-JDictionaryFoxtrot/out/production/classes/com/intellij/uiDesigner/core/LayoutState.class
-JDictionaryFoxtrot/out/production/classes/com/intellij/uiDesigner/core/HorizontalInfo.class
-JDictionaryFoxtrot/out/production/classes/com/intellij/uiDesigner/core/GridLayoutManager.class
-JDictionaryFoxtrot/out/production/classes/com/intellij/uiDesigner/core/GridConstraints.class
-JDictionaryFoxtrot/out/production/classes/com/intellij/uiDesigner/core/DimensionInfo.class
-JDictionaryFoxtrot/out/production/classes/com/intellij/uiDesigner/core/AbstractLayout.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/view/TraductorViewModule.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/view/TraductorViewImpl.class
-JDictionaryFoxtrot/out/production/classes/ayds/dictionary/foxtrot/view/TraductorViewImpl$1.class
+
+# Created by https://www.gitignore.io/api/java,intellij
+
+### Intellij ###
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
+# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+
+# User-specific stuff:
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/dictionaries
+
+# Sensitive or high-churn files:
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.xml
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+
+# Gradle:
+.idea/**/gradle.xml
+.idea/**/libraries
+
+# CMake
+cmake-build-debug/
+
+# Mongo Explorer plugin:
+.idea/**/mongoSettings.xml
+
+## File-based project format:
+*.iws
+
+## Plugin-specific files:
+
+# IntelliJ
+/out/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# Cursive Clojure plugin
+.idea/replstate.xml
+
+# Ruby plugin and RubyMine
+/.rakeTasks
+
+# Crashlytics plugin (for Android Studio and IntelliJ)
+com_crashlytics_export_strings.xml
+crashlytics.properties
+crashlytics-build.properties
+fabric.properties
+
+### Intellij Patch ###
+# Comment Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-215987721
+
+# *.iml
+# modules.xml
+# .idea/misc.xml
+# *.ipr
+
+# Sonarlint plugin
+.idea/sonarlint
+
+### Java ###
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+
+# End of https://www.gitignore.io/api/java,intellij
+

@@ -1,8 +1,8 @@
 package ayds.dictionary.foxtrot.model;
 
 import ayds.dictionary.foxtrot.model.databases.*;
-import ayds.dictionary.foxtrot.model.services.Service;
-import ayds.dictionary.foxtrot.model.services.ServiceModule;
+import services.Service;
+import services.ServiceModule;
 
 public class TranslatorModelModule {
   private static TranslatorModelModule instance;
@@ -12,7 +12,7 @@ public class TranslatorModelModule {
   private TranslatorModelModule() {
     DataBase dataBase= TranslatorDatabasesModule.getInstance().getDataBase();
     Service service = ServiceModule.getInstance().getRemoteSource();
-    translatorModel =  new TranslatorModelImpl(new RepositoryImpl(dataBase,service));
+    translatorModel =  new TranslatorModelImpl(new RepositoryImpl(dataBase,new YandexServiceAdapter(service)));
   }
 
   public static TranslatorModelModule getInstance() {
