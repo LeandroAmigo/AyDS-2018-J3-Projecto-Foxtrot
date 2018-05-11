@@ -1,0 +1,1 @@
+package ayds.dictionary.foxtrot.model;public interface ExceptionListener {    void notifyMessage(String message);}
