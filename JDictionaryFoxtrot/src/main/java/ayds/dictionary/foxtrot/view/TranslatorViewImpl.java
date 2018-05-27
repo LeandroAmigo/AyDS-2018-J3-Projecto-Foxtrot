@@ -11,10 +11,12 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 class TranslatorViewImpl implements TranslatorView {
-  private JTextField textField1;
+  private JTextField searchField;
   private JButton goButton;
   private JPanel contentPane;
   private JTextPane translatorPanel;
+  private JLabel loadingLabel;
+  private JLabel sourceLabel;
   private TranslatorController translatorController;
   private TranslatorModel translatorModel;
   private OutputParser outputParser;
@@ -28,25 +30,29 @@ class TranslatorViewImpl implements TranslatorView {
   }
 
   private void initTranslatorPanel() {
-    translatorPanel.setContentType("text/html");
+    loadingLabel.setVisible(false);
+	  translatorPanel.setContentType("text/html");
   }
 
   private void initListeners() {
-    initButtonListener();
+    initGoButtonListener();
     initTraductorModelListener();
     initExceptionListener();
   }
 
-  private void  initButtonListener() {
+
+  private void  initGoButtonListener(){
     goButton.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        if (InputValidation.isInputValid(textField1.getText().trim()))
-          translatorController.onEventGo(textField1.getText().trim());
-        else
+      @Override public void actionPerformed(ActionEvent e) {
+        if (InputValidation.isInputValid(searchField.getText().trim())) {
+          translatorController.onEventGo(searchField.getText().trim());
+          loadingLabel.setVisible(true);
+        }
+        else {
           showWindowException("Ingrese un termino valido");
+        }
       }
-    });
+     });
   }
 
   private void  initTraductorModelListener(){
@@ -54,6 +60,7 @@ class TranslatorViewImpl implements TranslatorView {
         @Override
         public void didUpdateTraductor() {
             updateTranslationPanel(translatorModel.getDefinition());
+            loadingLabel.setVisible(false);
         }
       });
   }
@@ -61,6 +68,7 @@ class TranslatorViewImpl implements TranslatorView {
   private void updateTranslationPanel(Definition definition) {
     String meaning = formatMeaning(definition);
     translatorPanel.setText(meaning);
+    sourceLabel.setText("Source: "+definition.getSource().toString());
   }
 
   private String formatMeaning(Definition definition) {
@@ -84,7 +92,7 @@ class TranslatorViewImpl implements TranslatorView {
   private void showWindowException(String message) {
     JOptionPane.showMessageDialog(new JFrame(),
             message,
-            "Mensaje de Error",
+            "Mensaje de error",
             JOptionPane.ERROR_MESSAGE);
   }
 

@@ -1,0 +1,1 @@
+package ayds.dictionary.foxtrot.model;public enum Source {    YANDEX}
