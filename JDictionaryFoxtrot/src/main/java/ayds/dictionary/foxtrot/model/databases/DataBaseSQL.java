@@ -1,6 +1,6 @@
 package ayds.dictionary.foxtrot.model.databases;
 
-import ayds.dictionary.foxtrot.exceptions.TranslatorException;
+import ayds.dictionary.foxtrot.model.exceptions.TranslatorException;
 import ayds.dictionary.foxtrot.model.Definition;
 import ayds.dictionary.foxtrot.model.Source;
 import ayds.dictionary.foxtrot.model.TranslatorModelModule;

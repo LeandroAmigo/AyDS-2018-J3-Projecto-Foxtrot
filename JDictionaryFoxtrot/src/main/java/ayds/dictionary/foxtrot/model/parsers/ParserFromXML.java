@@ -4,7 +4,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import ayds.dictionary.foxtrot.exceptions.TranslatorException;
+import ayds.dictionary.foxtrot.model.exceptions.TranslatorException;
 import ayds.dictionary.foxtrot.model.TranslatorModelModule;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;

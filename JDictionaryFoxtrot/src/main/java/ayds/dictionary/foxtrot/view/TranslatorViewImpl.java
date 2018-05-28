@@ -59,8 +59,11 @@ class TranslatorViewImpl implements TranslatorView {
 	  translatorModel.setListener(new TranslatorModelListener() {
         @Override
         public void didUpdateTraductor() {
-            updateTranslationPanel(translatorModel.getDefinition());
-            loadingLabel.setVisible(false);
+          Definition definition = translatorModel.getDefinition();
+          loadingLabel.setVisible(false);
+          if (definition != null) {
+            updateTranslationPanel(definition);
+          }
         }
       });
   }

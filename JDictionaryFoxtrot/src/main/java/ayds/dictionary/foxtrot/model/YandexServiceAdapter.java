@@ -1,6 +1,6 @@
 package ayds.dictionary.foxtrot.model;
 
-import ayds.dictionary.foxtrot.exceptions.TranslatorException;
+import ayds.dictionary.foxtrot.model.exceptions.TranslatorException;
 import services.Service;
 
 import java.io.IOException;
@@ -15,13 +15,9 @@ class YandexServiceAdapter implements ServiceAdapter{
   }
 
   @Override
-  public String getMeaning(String term) {
-    String meaning = "";
-    try {
-      meaning = yandexService.getMeaning(term);
-    } catch (IOException e) {
-      TranslatorModelModule.getInstance().getExceptionHandler().notifyException(new TranslatorException("Hubo un fallo en la conexión al servicio."));
-    }
+  public String getMeaning(String term) throws IOException{
+    String meaning = null;
+    meaning = yandexService.getMeaning(term);
     return meaning;
   }
 
