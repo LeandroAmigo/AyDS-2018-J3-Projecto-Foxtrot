@@ -1,0 +1,3 @@
+[submodule "JDictionaryFoxtrot/YandexService"]
+	path = JDictionaryFoxtrot/YandexService
+	url = git://github.com/LeandroAmigo/YandexService.git
