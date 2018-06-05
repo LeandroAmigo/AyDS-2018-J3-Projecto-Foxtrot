@@ -1,8 +1,9 @@
 package ayds.dictionary.foxtrot.model;
 
-import ayds.dictionary.foxtrot.model.exceptions.TranslatorException;
+import org.xml.sax.SAXException;
 import services.Service;
 
+import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 
 class YandexServiceAdapter implements ServiceAdapter{
@@ -15,7 +16,7 @@ class YandexServiceAdapter implements ServiceAdapter{
   }
 
   @Override
-  public String getMeaning(String term) throws IOException{
+  public String getMeaning(String term) throws IOException, ParserConfigurationException, SAXException {
     String meaning = null;
     meaning = yandexService.getMeaning(term);
     return meaning;
