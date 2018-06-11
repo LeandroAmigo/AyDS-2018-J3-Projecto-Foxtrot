@@ -7,6 +7,7 @@ import ayds.dictionary.foxtrot.model.TranslatorModelListener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 import javax.swing.*;
 
@@ -14,9 +15,12 @@ class TranslatorViewImpl implements TranslatorView {
   private JTextField searchField;
   private JButton goButton;
   private JPanel contentPane;
-  private JTextPane translatorPanel;
   private JLabel loadingLabel;
   private JLabel sourceLabel;
+  private JTextPane translatorPanel1;
+  private JTextPane translatorPanel2;
+  private JTextPane translatorPanel3;
+  private LinkedList<JTextPane> translatorPanels;
   private TranslatorController translatorController;
   private TranslatorModel translatorModel;
   private OutputParser outputParser;
@@ -25,13 +29,16 @@ class TranslatorViewImpl implements TranslatorView {
     this.translatorController = translatorController;
     this.translatorModel = translatorModel;
     this.outputParser = outputParser;
-    initTranslatorPanel();
+    initTranslatorPanels();
     initListeners();
   }
 
-  private void initTranslatorPanel() {
+  private void initTranslatorPanels() {
     loadingLabel.setVisible(false);
-	  translatorPanel.setContentType("text/html");
+    translatorPanels = new LinkedList<JTextPane>();
+    translatorPanels.add(translatorPanel1);
+    translatorPanels.add(translatorPanel2);
+    translatorPanels.add(translatorPanel3);
   }
 
   private void initListeners() {
@@ -59,19 +66,29 @@ class TranslatorViewImpl implements TranslatorView {
 	  translatorModel.setListener(new TranslatorModelListener() {
         @Override
         public void didUpdateTraductor() {
-          Definition definition = translatorModel.getDefinition();
           loadingLabel.setVisible(false);
-          if (definition != null) {
-            updateTranslationPanel(definition);
-          }
+          updateTranslationPanels(translatorModel.getDefinitions());
         }
       });
   }
 
-  private void updateTranslationPanel(Definition definition) {
+  private void updateTranslationPanels(Iterable<Definition> definitions) {
+	  int currentPanel = 0;
+	  for (Definition definition : definitions) {
+	    String meaning = formatMeaning(definition);
+	    if (!meaning.isEmpty()) {
+	      translatorPanels.get(currentPanel).setText(meaning+" "+definition.getSource());
+      }
+      else {
+        translatorPanels.get(currentPanel).setText("No hubo resultado. "+definition.getSource());
+      }
+      currentPanel++;
+    }
+	  /*
     String meaning = formatMeaning(definition);
-    translatorPanel.setText(meaning);
+    translatorPanel1.setText(meaning);
     sourceLabel.setText("Source: "+definition.getSource().toString());
+    */
   }
 
   private String formatMeaning(Definition definition) {

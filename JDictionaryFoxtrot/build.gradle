@@ -15,4 +15,6 @@ dependencies {
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'org.xerial:sqlite-jdbc:3.21.0'
     compile project('YandexService')
+    compile project('WikipediaService')
+    compile project('bhlLIB')
 }

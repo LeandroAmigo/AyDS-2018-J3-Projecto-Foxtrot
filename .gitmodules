@@ -1,3 +1,9 @@
 [submodule "JDictionaryFoxtrot/YandexService"]
 	path = JDictionaryFoxtrot/YandexService
 	url = git://github.com/LeandroAmigo/YandexService.git
+[submodule "JDictionaryFoxtrot/WikipediaService"]
+	path = JDictionaryFoxtrot/WikipediaService
+	url = git://github.com/astreiten/wikipediaservice.git
+[submodule "JDictionaryFoxtrot/bhlLIB"]
+	path = JDictionaryFoxtrot/bhlLIB
+	url = git://github.com/juanfmoyano/bhlLIB.git

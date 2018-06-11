@@ -1,3 +1,5 @@
 rootProject.name = 'DictionaryFoxtrot'
 include 'YandexService'
+include 'WikipediaService'
+include 'bhlLIB'
 

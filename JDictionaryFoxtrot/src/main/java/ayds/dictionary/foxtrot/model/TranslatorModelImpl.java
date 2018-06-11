@@ -1,10 +1,11 @@
 package ayds.dictionary.foxtrot.model;
 
+
 class TranslatorModelImpl implements TranslatorModel {
 
  private final Repository repository;
  private TranslatorModelListener listener;
- private Definition definition;
+ private Iterable<Definition> definitions;
 
   TranslatorModelImpl(Repository repository) {
     this.repository= repository;
@@ -17,13 +18,13 @@ class TranslatorModelImpl implements TranslatorModel {
 
   @Override
   public void requestResult(String term) {
-      definition = repository.getDefinition(term);
+      definitions = repository.getDefinitions(term);
       notifyListener();
   }
 
   @Override
-  public Definition getDefinition(){
-      return definition;
+  public Iterable<Definition> getDefinitions(){
+      return definitions;
   }
 
   private void notifyListener() {
