@@ -97,7 +97,9 @@
         <children>
           <component id="882ee" class="javax.swing.JTextPane" binding="translatorPanel2">
             <constraints/>
-            <properties/>
+            <properties>
+              <contentType value="text/html"/>
+            </properties>
           </component>
         </children>
       </scrollpane>
@@ -110,7 +112,9 @@
         <children>
           <component id="6a925" class="javax.swing.JTextPane" binding="translatorPanel3">
             <constraints/>
-            <properties/>
+            <properties>
+              <contentType value="text/html"/>
+            </properties>
           </component>
         </children>
       </scrollpane>

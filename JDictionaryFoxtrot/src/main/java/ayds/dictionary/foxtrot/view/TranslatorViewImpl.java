@@ -84,11 +84,6 @@ class TranslatorViewImpl implements TranslatorView {
       }
       currentPanel++;
     }
-	  /*
-    String meaning = formatMeaning(definition);
-    translatorPanel1.setText(meaning);
-    sourceLabel.setText("Source: "+definition.getSource().toString());
-    */
   }
 
   private String formatMeaning(Definition definition) {

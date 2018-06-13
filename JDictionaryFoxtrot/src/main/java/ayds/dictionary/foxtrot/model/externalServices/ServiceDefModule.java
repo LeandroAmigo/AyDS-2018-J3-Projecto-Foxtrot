@@ -2,6 +2,7 @@ package ayds.dictionary.foxtrot.model.externalServices;
 
 import java.util.HashMap;
 import ayds.dictionary.foxtrot.services.YandexServiceModule;
+import wikipedia.service.WikipediaServiceModule;
 
 public class ServiceDefModule {
   private static ServiceDefModule ourInstance = new ServiceDefModule();
@@ -19,7 +20,7 @@ public class ServiceDefModule {
 
   private void initializeServicesMap(HashMap<Source, ServiceAdapter> servicesMap) {
     servicesMap.put(Source.YANDEX, new YandexServiceAdapter(YandexServiceModule.getInstance().getRemoteSource()));
-    //servicesMap.put(Source.WIKIPEDIA, new WikipediaServiceAdapter(WikipediaServiceModule.getInstance().getService()));
+    servicesMap.put(Source.WIKIPEDIA, new WikipediaServiceAdapter(WikipediaServiceModule.getInstance().getService()));
     //servicesMap.put(Source.BHLLIB, new BigHugeLabsAdapter(BigHugeLabsModule.getInstance().getBigHugeLabsService()));
   }
 
