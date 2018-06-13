@@ -1,6 +1,6 @@
 package ayds.dictionary.foxtrot.model.externalServices;
 
-import services.Service;
+import Services.Service;
 
 import java.io.IOException;
 
@@ -14,8 +14,8 @@ public class WikipediaServiceAdapter implements ServiceAdapter {
 
   @Override
   public String getMeaning(String term) throws IOException {
-    String meaning = wikipediaService.getMeaning(term);
-    return meaning;
+    //String meaning = wikipediaService.getMeaning(term);
+    return null;
   }
 
 }

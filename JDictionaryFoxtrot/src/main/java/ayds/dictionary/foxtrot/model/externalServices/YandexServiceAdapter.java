@@ -1,12 +1,12 @@
 package ayds.dictionary.foxtrot.model.externalServices;
 
-import services.Service;
+import ayds.dictionary.foxtrot.services.YandexService;
 import java.io.IOException;
 
 class YandexServiceAdapter implements ServiceAdapter {
-  private Service yandexService;
+  private YandexService yandexService;
 
-  YandexServiceAdapter(Service yandexService) {
+  YandexServiceAdapter(YandexService yandexService) {
     this.yandexService = yandexService;
   }
 

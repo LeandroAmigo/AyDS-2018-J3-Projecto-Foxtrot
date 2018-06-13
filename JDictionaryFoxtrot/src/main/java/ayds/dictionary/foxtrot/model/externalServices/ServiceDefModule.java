@@ -1,6 +1,7 @@
 package ayds.dictionary.foxtrot.model.externalServices;
 
 import java.util.HashMap;
+import ayds.dictionary.foxtrot.services.ServiceModule;
 
 public class ServiceDefModule {
   private static ServiceDefModule ourInstance = new ServiceDefModule();
@@ -17,7 +18,7 @@ public class ServiceDefModule {
   }
 
   private void initializeServicesMap(HashMap<Source, ServiceAdapter> servicesMap) {
-    servicesMap.put(Source.YANDEX, new YandexServiceAdapter(services.ServiceModule.getInstance().getRemoteSource()));
+    servicesMap.put(Source.YANDEX, new YandexServiceAdapter(ServiceModule.getInstance().getRemoteSource()));
     //servicesMap.put(Source.WIKIPEDIA, new WikipediaServiceAdapter(Services.ServiceModule.getInstance().getService()));
     //servicesMap.put(Source.BHLLIB, new BigHugeLabsAdapter(services.ServiceModule.getInstance().getService()));
   }
