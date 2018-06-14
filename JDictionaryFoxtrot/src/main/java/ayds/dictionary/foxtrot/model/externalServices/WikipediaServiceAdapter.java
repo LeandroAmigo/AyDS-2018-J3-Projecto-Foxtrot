@@ -1,7 +1,6 @@
 package ayds.dictionary.foxtrot.model.externalServices;
 
 import wikipedia.service.WikipediaService;
-
 import java.io.IOException;
 
 public class WikipediaServiceAdapter implements ServiceAdapter {

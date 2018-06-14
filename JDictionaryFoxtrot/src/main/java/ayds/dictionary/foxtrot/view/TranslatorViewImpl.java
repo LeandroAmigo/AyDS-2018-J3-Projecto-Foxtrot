@@ -16,11 +16,14 @@ class TranslatorViewImpl implements TranslatorView {
   private JButton goButton;
   private JPanel contentPane;
   private JLabel loadingLabel;
-  private JLabel sourceLabel;
   private JTextPane translatorPanel1;
   private JTextPane translatorPanel2;
   private JTextPane translatorPanel3;
+  private JLabel sourceLabelPanel1;
+  private JLabel sourceLabelPanel2;
+  private JLabel sourceLabelPanel3;
   private LinkedList<JTextPane> translatorPanels;
+  private LinkedList <JLabel> sourceLabelPanels;
   private TranslatorController translatorController;
   private TranslatorModel translatorModel;
   private OutputParser outputParser;
@@ -30,6 +33,7 @@ class TranslatorViewImpl implements TranslatorView {
     this.translatorModel = translatorModel;
     this.outputParser = outputParser;
     initTranslatorPanels();
+    initSourceLanelPanels();
     initListeners();
   }
 
@@ -39,6 +43,13 @@ class TranslatorViewImpl implements TranslatorView {
     translatorPanels.add(translatorPanel1);
     translatorPanels.add(translatorPanel2);
     translatorPanels.add(translatorPanel3);
+  }
+
+  private void initSourceLanelPanels(){
+    sourceLabelPanels = new LinkedList<JLabel>();
+    sourceLabelPanels.add(sourceLabelPanel1);
+    sourceLabelPanels.add(sourceLabelPanel2);
+    sourceLabelPanels.add(sourceLabelPanel3);
   }
 
   private void initListeners() {
@@ -77,13 +88,14 @@ class TranslatorViewImpl implements TranslatorView {
 	  for (Definition definition : definitions) {
 	    String meaning = formatMeaning(definition);
 	    if (!meaning.isEmpty()) {
-	      translatorPanels.get(currentPanel).setText(meaning+" "+definition.getSource());
-      }
-      else {
-        translatorPanels.get(currentPanel).setText("No hubo resultado. "+definition.getSource());
-      }
-      currentPanel++;
-    }
+	      translatorPanels.get(currentPanel).setText(meaning);
+        }
+        else {
+         translatorPanels.get(currentPanel).setText("No hubo resultado. ");
+        }
+        sourceLabelPanels.get(currentPanel).setText("Source: "+definition.getSource());
+        currentPanel++;
+	  }
   }
 
   private String formatMeaning(Definition definition) {
@@ -119,4 +131,5 @@ class TranslatorViewImpl implements TranslatorView {
     frame.pack();
     frame.setVisible(true);
   }
+
 }

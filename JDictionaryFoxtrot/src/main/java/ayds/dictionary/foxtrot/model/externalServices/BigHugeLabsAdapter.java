@@ -2,8 +2,8 @@ package ayds.dictionary.foxtrot.model.externalServices;
 
 
 import ayds.dictionary.delta.services.BigHugeLabsService;
-
 import java.io.IOException;
+
 
 public class BigHugeLabsAdapter implements ServiceAdapter {
   private BigHugeLabsService bigHugeLabsService;
@@ -14,7 +14,13 @@ public class BigHugeLabsAdapter implements ServiceAdapter {
 
   @Override
   public String getMeaning(String term) throws IOException{
-    String meaning = ""/*bigHugeLabsService.getMeaning(term)*/;
+    String meaning= null;
+    try{
+      meaning = bigHugeLabsService.getMeaning(term);
+    }
+    catch (Exception e){
+      throw new IOException( e.getMessage());
+    }
     return meaning;
   }
 
