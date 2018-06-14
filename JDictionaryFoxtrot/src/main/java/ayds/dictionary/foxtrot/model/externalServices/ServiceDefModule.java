@@ -18,7 +18,7 @@ public class ServiceDefModule {
   }
 
   private ServicesMapFactory createMapFactory() {
-    return new ServiceMapFactotyImpl(YandexServiceModule.getInstance().getRemoteSource(),
+    return new ServiceMapFactoryImpl(YandexServiceModule.getInstance().getRemoteSource(),
             WikipediaServiceModule.getInstance().getService(),
             BigHugeLabsModule.getInstance().getBigHugeLabsService());
   }

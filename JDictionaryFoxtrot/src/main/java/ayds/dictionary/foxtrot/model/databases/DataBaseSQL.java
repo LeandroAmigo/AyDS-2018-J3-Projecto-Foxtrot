@@ -45,7 +45,7 @@ class DataBaseSQL implements DataBase{
     Connection connection = null;
     if ( !definition.isMeaningEmpty()) {
       String term = definition.getTerm();
-      String meaning = definition.getMeaning();
+      String meaning = definition.getMeaning().replace("'", "`");
       int source = definition.getSource().ordinal();
       try {
         connection = createConnection();
