@@ -1,1 +1,0 @@
-package ayds.dictionary.foxtrot.model.externalServices;import java.util.Map;public interface ServicesMapFactory {    Map<Source, ServiceAdapter> getServicesMap();}

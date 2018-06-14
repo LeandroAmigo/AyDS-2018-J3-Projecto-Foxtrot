@@ -1,26 +1,21 @@
 package ayds.dictionary.foxtrot.model.externalServices;
 
-import ayds.dictionary.foxtrot.services.YandexServiceModule;
-import wikipedia.service.WikipediaServiceModule;
-import ayds.dictionary.delta.services.BigHugeLabsModule;
+
+import ayds.dictionary.foxtrot.model.externalServices.adapters.ServiceMapFactoryModule;
 
 public class ServiceDefModule {
-  private static ServiceDefModule ourInstance = new ServiceDefModule();
+  private static ServiceDefModule instance;
   private ServicesDef servicesDef;
 
   public static ServiceDefModule getInstance() {
-    return ourInstance;
+    if (instance== null){
+      instance = new ServiceDefModule();
+    }
+    return instance;
   }
 
   private ServiceDefModule() {
-      ServicesMapFactory factory = createMapFactory();
-      servicesDef = new ServicesDefImpl(factory.getServicesMap());
-  }
-
-  private ServicesMapFactory createMapFactory() {
-    return new ServiceMapFactoryImpl(YandexServiceModule.getInstance().getRemoteSource(),
-            WikipediaServiceModule.getInstance().getService(),
-            BigHugeLabsModule.getInstance().getBigHugeLabsService());
+     servicesDef= new ServicesDefImpl(ServiceMapFactoryModule.getInstance().getServicesMapFactory().getServicesMap());
   }
 
   public ServicesDef getServiceDef() {

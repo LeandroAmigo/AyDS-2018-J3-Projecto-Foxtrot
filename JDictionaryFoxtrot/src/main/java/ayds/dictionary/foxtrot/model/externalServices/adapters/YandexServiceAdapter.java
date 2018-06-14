@@ -1,4 +1,4 @@
-package ayds.dictionary.foxtrot.model.externalServices;
+package ayds.dictionary.foxtrot.model.externalServices.adapters;
 
 import ayds.dictionary.foxtrot.services.YandexService;
 import java.io.IOException;

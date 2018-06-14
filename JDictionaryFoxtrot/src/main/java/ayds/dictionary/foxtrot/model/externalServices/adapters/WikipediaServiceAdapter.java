@@ -1,9 +1,9 @@
-package ayds.dictionary.foxtrot.model.externalServices;
+package ayds.dictionary.foxtrot.model.externalServices.adapters;
 
 import wikipedia.service.WikipediaService;
 import java.io.IOException;
 
-public class WikipediaServiceAdapter implements ServiceAdapter {
+ class WikipediaServiceAdapter implements ServiceAdapter {
   private WikipediaService wikipediaService;
 
   WikipediaServiceAdapter(WikipediaService wikipediaService) {
