@@ -1,6 +1,5 @@
 package ayds.dictionary.foxtrot.model.externalServices;
 
-import java.util.HashMap;
 import ayds.dictionary.foxtrot.services.YandexServiceModule;
 import wikipedia.service.WikipediaServiceModule;
 import ayds.dictionary.delta.services.BigHugeLabsModule;
@@ -14,15 +13,14 @@ public class ServiceDefModule {
   }
 
   private ServiceDefModule() {
-    HashMap<Source, ServiceAdapter> servicesMap = new HashMap<Source, ServiceAdapter>();
-    initializeServicesMap(servicesMap);
-    servicesDef = new ServicesDefImpl(servicesMap);
+      ServicesMapFactory factory = createMapFactory();
+      servicesDef = new ServicesDefImpl(factory.getServicesMap());
   }
 
-  private void initializeServicesMap(HashMap<Source, ServiceAdapter> servicesMap) {
-    servicesMap.put(Source.YANDEX, new YandexServiceAdapter(YandexServiceModule.getInstance().getRemoteSource()));
-    servicesMap.put(Source.WIKIPEDIA, new WikipediaServiceAdapter(WikipediaServiceModule.getInstance().getService()));
-    servicesMap.put(Source.BHLLIB, new BigHugeLabsAdapter(BigHugeLabsModule.getInstance().getBigHugeLabsService()));
+  private ServicesMapFactory createMapFactory() {
+    return new ServiceMapFactotyImpl(YandexServiceModule.getInstance().getRemoteSource(),
+            WikipediaServiceModule.getInstance().getService(),
+            BigHugeLabsModule.getInstance().getBigHugeLabsService());
   }
 
   public ServicesDef getServiceDef() {

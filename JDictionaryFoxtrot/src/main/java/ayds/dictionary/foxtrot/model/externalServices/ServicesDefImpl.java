@@ -1,11 +1,11 @@
 package ayds.dictionary.foxtrot.model.externalServices;
 
-import java.util.HashMap;
+import java.util.Map;
 
 public class ServicesDefImpl implements ServicesDef {
-  private HashMap<Source, ServiceAdapter> servicesMap;
+  private Map<Source, ServiceAdapter> servicesMap;
 
-  ServicesDefImpl(HashMap<Source, ServiceAdapter> servicesMap) {
+  ServicesDefImpl(Map<Source, ServiceAdapter> servicesMap) {
     this.servicesMap = servicesMap;
   }
 
