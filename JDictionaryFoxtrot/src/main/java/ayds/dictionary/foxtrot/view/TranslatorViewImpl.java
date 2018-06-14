@@ -91,7 +91,7 @@ class TranslatorViewImpl implements TranslatorView {
 	      translatorPanels.get(currentPanel).setText(meaning);
         }
         else {
-         translatorPanels.get(currentPanel).setText("No hubo resultado. ");
+	      translatorPanels.get(currentPanel).setText("No hubo resultado. ");
         }
         sourceLabelPanels.get(currentPanel).setText("Source: "+definition.getSource());
         currentPanel++;
