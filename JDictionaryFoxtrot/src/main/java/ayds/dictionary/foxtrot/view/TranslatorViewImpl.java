@@ -65,6 +65,7 @@ class TranslatorViewImpl implements TranslatorView {
         if (InputValidation.isInputValid(searchField.getText().trim())) {
           translatorController.onEventGo(searchField.getText().trim());
           loadingLabel.setVisible(true);
+          goButton.setEnabled(false);
         }
         else {
           showWindowException("Ingrese un termino valido");
@@ -78,6 +79,7 @@ class TranslatorViewImpl implements TranslatorView {
         @Override
         public void didUpdateTraductor() {
           loadingLabel.setVisible(false);
+          goButton.setEnabled(true);
           updateTranslationPanels(translatorModel.getDefinitions());
         }
       });
