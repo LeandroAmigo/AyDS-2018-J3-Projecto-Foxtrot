@@ -11,9 +11,8 @@ class YandexServiceAdapter implements ServiceAdapter {
   }
 
   @Override
-  public String getMeaning(String term) throws IOException {
-    String meaning = yandexService.getMeaning(term);
-    return meaning;
+  public String getMeaning(String term) throws Exception {
+    return yandexService.getMeaning(term);
   }
 
 }

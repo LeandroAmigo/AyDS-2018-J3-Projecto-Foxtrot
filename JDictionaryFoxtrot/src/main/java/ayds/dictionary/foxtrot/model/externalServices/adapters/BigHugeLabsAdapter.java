@@ -11,15 +11,8 @@ import java.io.IOException;
   }
 
   @Override
-  public String getMeaning(String term) throws IOException{
-    String meaning= null;
-    try{
-      meaning = bigHugeLabsService.getMeaning(term);
-    }
-    catch (Exception e){
-      throw new IOException( e.getMessage());
-    }
-    return meaning;
+  public String getMeaning(String term) throws Exception{
+    return bigHugeLabsService.getMeaning(term);
   }
 
 }

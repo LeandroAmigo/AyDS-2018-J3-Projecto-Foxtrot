@@ -87,14 +87,9 @@ class TranslatorViewImpl implements TranslatorView {
 	  int currentPanel = 0;
 	  for (Definition definition : definitions) {
 	    String meaning = formatMeaning(definition);
-	    if (!meaning.isEmpty()) {
-	      translatorPanels.get(currentPanel).setText(meaning);
-        }
-        else {
-	      translatorPanels.get(currentPanel).setText("No hubo resultado. ");
-        }
-        sourceLabelPanels.get(currentPanel).setText("Source: "+definition.getSource());
-        currentPanel++;
+	    translatorPanels.get(currentPanel).setText(meaning);
+	    sourceLabelPanels.get(currentPanel).setText("Source: "+definition.getSource());
+	    currentPanel++;
 	  }
   }
 

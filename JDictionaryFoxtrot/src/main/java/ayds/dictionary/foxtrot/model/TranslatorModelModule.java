@@ -6,10 +6,11 @@ import ayds.dictionary.foxtrot.model.externalServices.ServiceDefModule;
 public class TranslatorModelModule {
   private static TranslatorModelModule instance;
   private TranslatorModel translatorModel;
-  private ExceptionHandler exceptionHandler = new ExceptionHandlerImpl();
+  private ExceptionHandler exceptionHandler;
 
   private TranslatorModelModule() {
     DataBase dataBase= TranslatorDatabasesModule.getInstance().getDataBase();
+    exceptionHandler = new ExceptionHandlerImpl();
     translatorModel =  new TranslatorModelImpl(
         new RepositoryImpl(dataBase, ServiceDefModule.getInstance().getServiceDef()));
   }

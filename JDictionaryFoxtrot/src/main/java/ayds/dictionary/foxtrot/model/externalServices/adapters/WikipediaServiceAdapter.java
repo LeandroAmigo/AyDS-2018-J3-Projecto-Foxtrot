@@ -12,9 +12,8 @@ import java.io.IOException;
   }
 
   @Override
-  public String getMeaning(String term) throws IOException {
-    String meaning = wikipediaService.getMeaning(term);
-    return meaning;
+  public String getMeaning(String term) throws Exception {
+    return wikipediaService.getMeaning(term);
   }
 
 }
