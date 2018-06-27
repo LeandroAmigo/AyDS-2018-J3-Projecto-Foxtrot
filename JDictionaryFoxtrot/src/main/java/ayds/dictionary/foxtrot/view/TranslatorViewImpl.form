@@ -55,7 +55,7 @@
             <properties>
               <contentType value="text/html"/>
               <editable value="false"/>
-              <font size="20"/>
+              <font/>
             </properties>
           </component>
         </children>
@@ -97,7 +97,7 @@
               <contentType value="text/html"/>
               <editable value="false"/>
               <enabled value="true"/>
-              <font size="20"/>
+              <font/>
             </properties>
           </component>
         </children>
@@ -114,7 +114,7 @@
             <properties>
               <contentType value="text/html"/>
               <editable value="false"/>
-              <font size="20"/>
+              <font/>
             </properties>
           </component>
         </children>
