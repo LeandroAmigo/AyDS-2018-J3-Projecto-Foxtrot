@@ -1,1 +1,1 @@
-package ayds.dictionary.foxtrot.model;public interface ExceptionHandler {    void setExceptionListener (ExceptionListener exceptionListener);    void notifyException( Exception exception);}
+package ayds.dictionary.foxtrot.model;import ayds.dictionary.foxtrot.model.externalServices.Source;import java.util.Map;public interface ExceptionHandler {    void setExceptionListener (ExceptionListener exceptionListener);    void notifyException( Exception exception);    void notifyServiceExceptions(Map<Source, Exception> exceptionMap);}

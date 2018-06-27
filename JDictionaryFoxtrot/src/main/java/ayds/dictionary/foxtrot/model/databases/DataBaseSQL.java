@@ -1,8 +1,8 @@
 package ayds.dictionary.foxtrot.model.databases;
 
-import ayds.dictionary.foxtrot.exceptions.TranslatorException;
+import ayds.dictionary.foxtrot.model.exceptions.TranslatorException;
 import ayds.dictionary.foxtrot.model.Definition;
-import ayds.dictionary.foxtrot.model.Source;
+import ayds.dictionary.foxtrot.model.externalServices.Source;
 import ayds.dictionary.foxtrot.model.TranslatorModelModule;
 
 import java.sql.*;
@@ -45,8 +45,8 @@ class DataBaseSQL implements DataBase{
     Connection connection = null;
     if ( !definition.isMeaningEmpty()) {
       String term = definition.getTerm();
-      String meaning = definition.getMeaning();
-      int source =definition.getSource().ordinal();
+      String meaning = definition.getMeaning().replace("'", "`");
+      int source = definition.getSource().ordinal();
       try {
         connection = createConnection();
         Statement statement = createStatement(connection);
@@ -58,13 +58,14 @@ class DataBaseSQL implements DataBase{
     }
   }
 
-  public Definition getMeaning (String term){
+  public Definition getMeaning (String term, Source source){
     Definition definition = null;
     Connection connection = null;
     try {
       connection = createConnection();
       Statement statement = createStatement(connection);
-      ResultSet rs = statement.executeQuery("select * from terms WHERE term = '" + term + "'");
+      int ordinal = source.ordinal();
+      ResultSet rs = statement.executeQuery("select * from terms WHERE term = '" + term + "' AND source = "+ordinal);
       if (rs.next())
           definition = new Definition(term, rs.getString("meaning"), Source.values()[(rs.getInt("source"))] );
       closeConnection(connection);

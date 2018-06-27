@@ -17,16 +17,16 @@ public class TranslatorControllerModule {
   }
 
   void startApplication() {
-    TranslatorController controller = getTraductorController();
-    TranslatorView view = openTraductorWindowAndGetView(controller);
+    TranslatorController controller = getTranslatorController();
+    TranslatorView view = openTranslatorWindowAndGetView(controller);
     controller.setTranslatorView(view);
   }
 
-  private TranslatorController getTraductorController() {
+  private TranslatorController getTranslatorController() {
     return new TranslatorControllerImpl(TranslatorModelModule.getInstance().getTranslatorModel());
   }
 
-  private TranslatorView openTraductorWindowAndGetView(TranslatorController translatorController) {
-    return TranslatorViewModule.getInstance().openTraductorWindow(translatorController);
+  private TranslatorView openTranslatorWindowAndGetView(TranslatorController translatorController) {
+    return TranslatorViewModule.getInstance().openTranslatorWindow(translatorController);
   }
 }

@@ -1,0 +1,1 @@
+package ayds.dictionary.foxtrot.model.externalServices;public enum Source {    YANDEX,    WIKIPEDIA,    BHLLIB}

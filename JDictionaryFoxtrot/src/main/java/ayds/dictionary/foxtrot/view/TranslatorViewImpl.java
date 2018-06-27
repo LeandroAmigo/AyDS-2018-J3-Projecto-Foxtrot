@@ -4,9 +4,9 @@ import ayds.dictionary.foxtrot.model.Definition;
 import ayds.dictionary.foxtrot.model.ExceptionListener;
 import ayds.dictionary.foxtrot.model.TranslatorModel;
 import ayds.dictionary.foxtrot.model.TranslatorModelListener;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 import javax.swing.*;
 
@@ -14,9 +14,15 @@ class TranslatorViewImpl implements TranslatorView {
   private JTextField searchField;
   private JButton goButton;
   private JPanel contentPane;
-  private JTextPane translatorPanel;
   private JLabel loadingLabel;
-  private JLabel sourceLabel;
+  private JTextPane translatorPanel1;
+  private JTextPane translatorPanel2;
+  private JTextPane translatorPanel3;
+  private JLabel sourceLabelPanel1;
+  private JLabel sourceLabelPanel2;
+  private JLabel sourceLabelPanel3;
+  private LinkedList<JTextPane> translatorPanels;
+  private LinkedList <JLabel> sourceLabelPanels;
   private TranslatorController translatorController;
   private TranslatorModel translatorModel;
   private OutputParser outputParser;
@@ -25,13 +31,24 @@ class TranslatorViewImpl implements TranslatorView {
     this.translatorController = translatorController;
     this.translatorModel = translatorModel;
     this.outputParser = outputParser;
-    initTranslatorPanel();
+    initTranslatorPanels();
+    initSourceLanelPanels();
     initListeners();
   }
 
-  private void initTranslatorPanel() {
+  private void initTranslatorPanels() {
     loadingLabel.setVisible(false);
-	  translatorPanel.setContentType("text/html");
+    translatorPanels = new LinkedList<JTextPane>();
+    translatorPanels.add(translatorPanel1);
+    translatorPanels.add(translatorPanel2);
+    translatorPanels.add(translatorPanel3);
+  }
+
+  private void initSourceLanelPanels(){
+    sourceLabelPanels = new LinkedList<JLabel>();
+    sourceLabelPanels.add(sourceLabelPanel1);
+    sourceLabelPanels.add(sourceLabelPanel2);
+    sourceLabelPanels.add(sourceLabelPanel3);
   }
 
   private void initListeners() {
@@ -47,6 +64,7 @@ class TranslatorViewImpl implements TranslatorView {
         if (InputValidation.isInputValid(searchField.getText().trim())) {
           translatorController.onEventGo(searchField.getText().trim());
           loadingLabel.setVisible(true);
+          goButton.setEnabled(false);
         }
         else {
           showWindowException("Ingrese un termino valido");
@@ -59,16 +77,21 @@ class TranslatorViewImpl implements TranslatorView {
 	  translatorModel.setListener(new TranslatorModelListener() {
         @Override
         public void didUpdateTraductor() {
-            updateTranslationPanel(translatorModel.getDefinition());
-            loadingLabel.setVisible(false);
+          loadingLabel.setVisible(false);
+          goButton.setEnabled(true);
+          updateTranslationPanels(translatorModel.getDefinitions());
         }
       });
   }
 
-  private void updateTranslationPanel(Definition definition) {
-    String meaning = formatMeaning(definition);
-    translatorPanel.setText(meaning);
-    sourceLabel.setText("Source: "+definition.getSource().toString());
+  private void updateTranslationPanels(Iterable<Definition> definitions) {
+	  int currentPanel = 0;
+	  for (Definition definition : definitions) {
+	    String meaning = formatMeaning(definition);
+	    translatorPanels.get(currentPanel).setText(meaning);
+	    sourceLabelPanels.get(currentPanel).setText("Source: "+definition.getSource());
+	    currentPanel++;
+	  }
   }
 
   private String formatMeaning(Definition definition) {
@@ -104,4 +127,5 @@ class TranslatorViewImpl implements TranslatorView {
     frame.pack();
     frame.setVisible(true);
   }
+
 }
