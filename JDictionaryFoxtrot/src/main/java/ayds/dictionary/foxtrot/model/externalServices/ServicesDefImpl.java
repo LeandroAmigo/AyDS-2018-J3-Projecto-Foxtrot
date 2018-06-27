@@ -1,7 +1,6 @@
 package ayds.dictionary.foxtrot.model.externalServices;
 
 import ayds.dictionary.foxtrot.model.externalServices.adapters.ServiceAdapter;
-
 import java.util.Map;
 
 public class ServicesDefImpl implements ServicesDef {

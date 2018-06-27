@@ -4,7 +4,6 @@ import ayds.dictionary.foxtrot.model.Definition;
 import ayds.dictionary.foxtrot.model.ExceptionListener;
 import ayds.dictionary.foxtrot.model.TranslatorModel;
 import ayds.dictionary.foxtrot.model.TranslatorModelListener;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;

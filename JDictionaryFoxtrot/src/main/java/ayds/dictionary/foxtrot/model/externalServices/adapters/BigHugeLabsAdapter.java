@@ -1,9 +1,8 @@
 package ayds.dictionary.foxtrot.model.externalServices.adapters;
 
 import ayds.dictionary.delta.services.BigHugeLabsService;
-import java.io.IOException;
 
- class BigHugeLabsAdapter implements ServiceAdapter {
+class BigHugeLabsAdapter implements ServiceAdapter {
   private BigHugeLabsService bigHugeLabsService;
 
   BigHugeLabsAdapter(BigHugeLabsService bigHugeLabsService) {

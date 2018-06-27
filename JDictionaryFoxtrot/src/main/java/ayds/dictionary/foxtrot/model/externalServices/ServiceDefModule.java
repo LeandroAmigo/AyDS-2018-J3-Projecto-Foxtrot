@@ -1,6 +1,5 @@
 package ayds.dictionary.foxtrot.model.externalServices;
 
-
 import ayds.dictionary.foxtrot.model.externalServices.adapters.ServiceMapFactoryModule;
 
 public class ServiceDefModule {
